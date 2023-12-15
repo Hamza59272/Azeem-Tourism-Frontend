@@ -1,0 +1,73 @@
+{
+  "name": "travelo-travel-website",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": ".",
+  "dependencies": {
+    "@emailjs/browser": "^3.11.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@material-ui/core": "^4.12.4",
+    "@material-ui/icons": "^4.11.3",
+    "@mui/icons-material": "^5.14.18",
+    "@mui/material": "^5.14.18",
+    "@mui/utils": "^5.15.0",
+    "autoprefixer": "^10.4.16",
+    "axios": "^1.6.2",
+    "eslint-config-react-app": "^7.0.1",
+    "flowbite": "^2.2.0",
+    "flowbite-react": "^0.6.4",
+    "formik": "^2.4.5",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-carousel-minimal": "^1.4.1",
+    "react-dom": "^18.2.0",
+    "react-floating-whatsapp": "^5.0.8",
+    "react-helmet": "^6.1.0",
+    "react-icons": "^4.12.0",
+    "react-router-dom": "^6.19.0",
+    "styled-components": "^6.1.1",
+    "swiper": "^11.0.4",
+    "yup": "^1.3.2"
+  },
+  "scripts": {
+    "start": "vite",
+    "serve": "vite preview",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "prettier": "npx prettier . --write",
+    "lint": "eslint ."
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.0",
+    "eslint": "^8.54.0",
+    "eslint-plugin-react": "^7.33.2",
+    "prettier": "^3.1.0",
+    "tailwindcss": "^3.3.5",
+    "tailwindcss-animated": "^1.0.1",
+    "vite": "^5.0.2",
+    "vite-plugin-svgr": "^4.2.0",
+    "vite-tsconfig-paths": "^4.2.2",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  }
+}
