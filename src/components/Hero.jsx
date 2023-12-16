@@ -22,23 +22,23 @@ export default function Component() {
 			<h2 className="py-5 text-2xl lg:text-3xl font-bold font-inter text-zinc-800 text-center">
 				Your Journey Begins here!
 			</h2>
-			<div className="h-[40vh] sm:h-[40vh] xl:h-[90vh] 2xl:h-[90vh] mx-3">
+			<div className="h-[40vh] sm:h-[40vh] xl:h-[90vh] 2xl:h-[90vh] mx-3 rounded-lg overflow-hidden shadow-lg">
 				<Carousel width="100vw" height="full">
-					<img loading="lazy" src={pic2} alt="..." />
-					<img loading="lazy" src={pic4} alt="..." />
-					<img loading="lazy" src={pic6} alt="..." />
-					<img loading="lazy" src={pic3} alt="..." />
-					<img loading="lazy" src={pic9} alt="..." />
-					<img loading="lazy" src={pic5} alt="..." />
-					<img loading="lazy" src={pic7} alt="..." />
-					<img loading="lazy" src={pic8} alt="..." />
-					<img loading="lazy" src={pic11} alt="..." />
-					<img loading="lazy" src={pic1} alt="..." />
-					<img loading="lazy" src={pic14} alt="..." />
-					<img loading="lazy" src={pic10} alt="..." />
-					<img loading="lazy" src={pic13} alt="..." />
-					<img loading="lazy" src={pic15} alt="..." />
-					<img loading="lazy" src={pic12} alt="..." />
+					<img loading="lazy" src={pic2} alt="..." className="rounded-lg shadow-md" />
+					<img loading="lazy" src={pic4} alt="..." className="rounded-lg" />
+					<img loading="lazy" src={pic6} alt="..." className="rounded-lg"/>
+					<img loading="lazy" src={pic3} alt="..." className="rounded-lg"/>
+					<img loading="lazy" src={pic9} alt="..." className="rounded-lg"/>
+					<img loading="lazy" src={pic5} alt="..." className="rounded-lg"/>
+					<img loading="lazy" src={pic7} alt="..." className="rounded-lg"/>
+					<img loading="lazy" src={pic8} alt="..." className="rounded-lg"/>
+					<img loading="lazy" src={pic11} alt="..." className="rounded-lg"/>
+					<img loading="lazy" src={pic1} alt="..."className="rounded-lg" />
+					<img loading="lazy" src={pic14} alt="..." className="rounded-lg"/>
+					<img loading="lazy" src={pic10} alt="..." className="rounded-lg"/>
+					<img loading="lazy" src={pic13} alt="..." className="rounded-lg"/>
+					<img loading="lazy" src={pic15} alt="..." className="rounded-lg" />
+					<img loading="lazy" src={pic12} alt="..." className="rounded-lg" />
 				</Carousel>
 			</div>
 		</div>
