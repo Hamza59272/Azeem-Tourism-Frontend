@@ -1,5 +1,4 @@
 /\*_ @type {import('tailwindcss').Config} _/
-
 // Define the colors
 const colors = {
 // Desert Tones

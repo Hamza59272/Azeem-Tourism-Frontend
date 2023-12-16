@@ -47,15 +47,15 @@ export default function Tours({ searchTerm }) {
 	return (
 		<div className="animate-fade-down bg-blue-100"  style={{border:1 ,borderRadius:20}}>
 		  <div className="title text-center">
-			<h2 className="text-3xl py-5 lg:text-4xl font-bold font-inter text-zinc-800">
-			  Tour
-			</h2>
+		  <h2 className="py-2 text-3xl lg:py-4 lg:pt-8 lg:text-4xl font-roboto font-bold uppercase  text-zinc-800 text-center">
+        	Tour
+      	  </h2>
 		  </div>
-		  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-8 p-6 overflow-hidden">
+		  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-8 pl-3 p-2 pr-4 overflow-hidden">
 			{data.map((destination, _id) => (
 			  <div
 				key={_id}
-				className="transform hover:scale-105 overflow-hidden shadow-lg rounded-lg bg-white lg:w-96 h-auto border-2 mx-auto my-3 lg:my-5"
+				className="transform hover:scale-105 overflow-hidden shadow-lg rounded-lg bg-white lg:w-96 h-auto border-2 my-3 lg:my-5"
 			  >
 				<img
 				  src={destination.images[0].image}
@@ -86,12 +86,7 @@ export default function Tours({ searchTerm }) {
 		  </div>
 		</div>
 	  );
-	  
-	  
-	  
-	  
-	  
-	  
+	  	  
 }
 
 export const Rating = () => {

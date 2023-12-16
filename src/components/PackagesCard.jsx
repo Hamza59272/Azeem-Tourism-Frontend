@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Button, Card } from "flowbite-react";
+import Lottie from 'react-lottie-player'
 import { useNavigate } from "react-router-dom";
 import SpinnerGif from "../assets/Spinner.gif";
 export default function PackagesCard({ searchTerm }) {
@@ -45,13 +46,16 @@ export default function PackagesCard({ searchTerm }) {
 		);
 	}
 	return (
-		<div className="animate-fade-down">
-			<div className="title">
-				<h2 className="py-5 text-3xl lg:py-10 lg:text-4xl font-bold font-inter text-zinc-800 text-center">
-          Holiday Packages
-				</h2>
+		<div className="animate-fade-down bg-rust" style={{ marginTop:'2%', border:1,borderRadius: 20}}>
+			<div className="title text-center">
+			<h2 className="py-2 text-3xl lg:py-4 lg:pt-8 lg:text-4xl font-roboto font-bold uppercase  text-zinc-800 text-center">
+       			 Holiday packages
+      		</h2>
 			</div>
 			<div className=" flex flex-wrap lg:justify-center flex-col lg:flex-row space-y-10 lg:space-y-0 lg:space-x-10 p-10 rounded-lg">
+			{
+				data.length > 0 ? 
+				<>
 				{data.map((destination, _id) => {
 					return (
 						<Card
@@ -84,6 +88,23 @@ export default function PackagesCard({ searchTerm }) {
 						</Card>
 					);
 				})}
+				</>
+				:
+				<div style={{
+					display:'flex' , 
+					flexDirection:'row' , 
+					justifyContent:'center'
+					}}
+				>
+					<Lottie
+						loop
+						path='https://lottie.host/72ef2ff7-b391-48a1-ab75-b24cb42bd376/dfa3j79vDK.json'
+						play
+						style={{width:'100%' , height:'60%' , justifyContent:'center'}}
+					/>
+			  </div>
+
+			}
 			</div>
 		</div>
 	);

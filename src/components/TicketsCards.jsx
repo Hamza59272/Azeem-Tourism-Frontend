@@ -45,33 +45,35 @@ const Tickets = ({ searchTerm }) => {
     );
   }
   return (
-    <div className="animate-fade-down">
-      <div className="title">
-        <h2 className="py-5 text-3xl lg:py-10 lg:text-4xl font-bold font-inter text-zinc-800 text-center">
-          Tickets
-        </h2>
-      </div>
-      <div className="flex flex-wrap lg:justify-center flex-col lg:flex-row space-y-10 lg:space-y-0 lg:space-x-10 p-10 rounded-lg">
-        {data.map((destination, _id) => {
-          return (
-            <Card
-            key={_id}
-              className="transform hover:scale-110 shadow-lg rounded-lg lg:w-96 border-2  h-auto mx-auto my-3 lg:my-5"
-              imgSrc={destination.images[0].image}
-            >
-              <h5>{destination.title}</h5>
+    <div className="animate-fade-down bg-lavender" style={{ marginTop:'2%', border:1,borderRadius: 20}} >
+      <div className="title text-center">
+      <h2 className="py-2 text-3xl lg:py-4 lg:pt-8 lg:text-4xl font-roboto font-bold uppercase  text-zinc-800 text-center">
+        Tickets
+      </h2>
 
-              <p className="text-left font-normal text-zinc-700 text-clip text-sm  overflow-auto h-20">
+      </div>
+      <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-8 pl-3 p-2 pr-4 overflow-hidden">
+        {data.map((destination, _id) => (
+          
+            <div
+            key={_id}
+              className="bg-white transform hover:scale-90 overflow-hidden shadow-lg rounded-lg lg:w-96  h-auto mx-auto my-3 lg:my-5"
+              
+            >
+              <img
+				        src={destination.images[0].image}
+				        alt={destination.title}
+				    className="w-full h-60 object-cover rounded-t-lg"
+				/>
+        <div className="p-4">
+        <h5 className="text-lg font-semibold mb-2">{destination.title}</h5>
+              <p className="text-gray-700 text-sm mb-4 h-16 overflow-auto">
                 {destination.description}
               </p>
 
-              <div className="info flex justify-between">
-                <div className="flex mt-2">
-                  {/* <p className=" font-semibold mr-1">
-                  Price
-                  </p> */}
-                </div>
-                <p className="font-bold text-2xl mt-1 mr-auto">
+              <div className="flex justify-between items-center mb-2">
+               
+                <p className="font-bold text-xl text-primary-700">
                   {"$" + destination.price}
                 </p>
                 <Rating />
@@ -86,13 +88,15 @@ const Tickets = ({ searchTerm }) => {
               <Button
                 color="dark"
                 onClick={() => navigate(`/tickets/${destination._id}`)}
-                className="shadow-sm  bg-zinc-100  text-zinc-800 hover:bg-zinc-800 hover:text-white transition-colors duration-100  text-sm font-medium text-center rounded-lg bg-primary-700 w-full"
+                className="border-2 border-black shadow-sm  bg-zinc-100  text-zinc-800 hover:bg-zinc-800 hover:text-white transition-colors duration-100  text-sm font-medium text-center rounded-lg bg-primary-700 w-full"
               >
                 Book Now
               </Button>
-            </Card>
-          );
-        })}
+              </div>
+            </div>
+
+          
+        ))}
       </div>
     </div>
   );
