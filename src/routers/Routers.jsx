@@ -12,7 +12,10 @@ const Tickets = lazy(() => import("../components/TicketsCards"));
 const Tours = lazy(() => import("../components/ToursCards"));
 const TicketDetail = lazy(() => import("../components/TicketDetail"));
 const TourDetail = lazy(() => import("../components/TourDetail"));
+//const NotFound = lazy(() => import("../components/NotFound"));
+
 import SpinnerGif from "../assets/Spinner.gif";
+import NotFound from "../components/NotFound";
 export const Loading = () => {
 	return (
 		<div className="flex justify-center items-center h-screen">
@@ -39,6 +42,8 @@ export default function App() {
 				<Route path="/payment/confirm" element={<SuccessPayment />} />
 				<Route path="/tickets/:slug" element={<TicketDetail />} />
 				<Route path="/tours/:slug" element={<TourDetail />} />
+				<Route path="/*" element={<NotFound />} />
+				
 			</Routes>
 		</Suspense>
 	);

@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Routers from "./routers/Routers";
+import NotFound from "./components/NotFound";
 
 const ManageOrders = lazy(() => import("./components/Order"));
 const AddPackages = lazy(() => import("./components/AddPackages"));
@@ -21,11 +22,13 @@ const ManageInactiveTours = lazy(() => import("./components/ManageInactiveTours"
 function App() {
 	if (!localStorage.getItem("accessToken")) {
 		return (
-			<Fragment>
-				<Navbar />
-				<Routers />
-				<Footer />
-			</Fragment>
+			<Suspense fallback={<div>Loading...</div>}>
+				<Fragment>
+					<Navbar />
+						<Routers />
+					<Footer />
+				</Fragment>
+			</Suspense>
 		);
 	} else {
 		return (
@@ -61,6 +64,10 @@ function App() {
 						<Route
 							path="/admin/manageinactivetours"
 							element={<ManageInactiveTours />}
+						/>
+						<Route
+							path="/*"
+							element={<NotFound />}
 						/>
 					</Routes>
 				</Fragment>
