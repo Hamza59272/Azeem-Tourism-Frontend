@@ -18,6 +18,11 @@ const PackageDetails = () => {
   const { slug } = useParams();
   const [packagesData, setPackagesData] = useState([]);
   const [packageObject, setPackageObject] = useState();
+  const [currencyOptions, setCurrencyOptions] = useState([])
+  const [fromCurrency, setFromCurrency] = useState()
+  const [toCurrency, setToCurrency] = useState()
+  const [exchangeRate, setExchangeRate] = useState()
+  const [CurrentCurrency, setCurrentCurrency ] = useState()
 
   useEffect(() => {
     const URL = "https://backend.azeemtourism.com/api/tickets/get";
@@ -34,11 +39,29 @@ const PackageDetails = () => {
       .catch((error) => {
         console.log(error.message);
       });
+
+      axios.get(`http://api.exchangeratesapi.io/v1/latest?access_key=${import.meta.env.VITE_REACT_APP_EXCHANGE_RATE_API_KEY}`)
+      .then(response => {
+        const baseCurrency = "USD"; 
+        const targetCurrency = "AED";
+        setCurrencyOptions([baseCurrency, ...Object.keys(response.data.rates)]);
+        setFromCurrency(baseCurrency);
+        setToCurrency(targetCurrency);
+        setCurrentCurrency(response.data.rates[baseCurrency])
+        setExchangeRate(response.data.rates[targetCurrency])
+      })
+
   }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handleCurrencyToggle = () => {
+    setFromCurrency(toCurrency)
+    setToCurrency(fromCurrency)
+   
+  };
 
   const validationSchema = Yup.object({
     full_name: Yup.string()
@@ -160,21 +183,27 @@ const PackageDetails = () => {
                   <p className="font-inter">{packageObject.description}</p>
                 </div>
                 <div className="flex ">
-                  <p className="flex text-xl font-inter font-semibold mt-1 gap-x-2">
+                <p className="flex text-xl font-inter font-semibold mt-1 gap-x-2">
                     <IoPricetagsOutline className="mt-1" />
-                    Price: $
+                    Price: {fromCurrency === "USD" ? "$" : "AED: "}
                   </p>
                   <span className="font-inter font-bold text-xl mt-1">
-                    {packageObject.price}
+                    {fromCurrency === "USD"
+                      ? packageObject.price
+                      : Math.round ((exchangeRate / CurrentCurrency) * packageObject.price,9)}
                   </span>
+                  <Button
+                    className="ml-5 shadow-sm bg-black text-white hover:bg-white hover:text-black transition-colors duration-100 text-xs md:text-sm font-medium text-center rounded-lg md:p-3"
+                    onClick={() => handleCurrencyToggle(fromCurrency)}
+                  >
+                    Change Price to {toCurrency}
+                  </Button>
 
-                  <span className=" d-flex align-items-center gap-1 section__description">
-                    {packageObject.price}
-                  </span>
+                 
 
-                  <span className=" d-flex align-items-center gap-1 section__description">
+                  <div className="ml-7 d-flex align-items-center gap-1 section__description">
                     Available Tickets {packageObject.totalCount}
-                  </span>
+                  </div>
                 </div>
               </div>
               <div className="w-full lg:w-2/5 ">
