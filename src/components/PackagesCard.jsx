@@ -52,10 +52,10 @@ export default function PackagesCard({ searchTerm }) {
        			 Holiday packages
       		</h2>
 			</div>
-			<div className=" flex flex-wrap lg:justify-center flex-col lg:flex-row space-y-10 lg:space-y-0 lg:space-x-10 p-10 rounded-lg">
+			<div >
 			{
 				data.length > 0 ? 
-				<>
+				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-8 pl-3 p-2 pr-4 overflow-hidden">
 				{data.map((destination, _id) => {
 					return (
 						<Card
@@ -88,7 +88,7 @@ export default function PackagesCard({ searchTerm }) {
 						</Card>
 					);
 				})}
-				</>
+				</div>
 				:
 				<div style={{
 					display:'flex' , 
@@ -100,7 +100,7 @@ export default function PackagesCard({ searchTerm }) {
 						loop
 						path='https://lottie.host/72ef2ff7-b391-48a1-ab75-b24cb42bd376/dfa3j79vDK.json'
 						play
-						style={{width:'100%' , height:'60%' , justifyContent:'center'}}
+						style={{width:'30%' , height:'20%' , justifyContent:'center'}}
 					/>
 			  </div>
 

@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const Footer = () => {
   const navigate = useNavigate();
   return (
-    <div className="bg-zinc-800 text-white p-6 flex-col justify-center items-center">
+    <div className="bg-zinc-800 text-white p-6 flex-col justify-center items-center mt-4">
       <ul className="gap-x-5 lg:gap-x-10 flex justify-center flex-row flex-wrap ">
         <li>
           <p

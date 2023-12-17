@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import SpinnerGif from "../assets/Spinner.gif";
 import axios from "axios";
+import Lottie from 'react-lottie-player'
 import { Button, Card } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
 import { Spinner } from "flowbite-react";
@@ -45,13 +46,16 @@ export default function Tours({ searchTerm }) {
 		);
 	}
 	return (
-		<div className="animate-fade-down bg-blue-100"  style={{border:1 ,borderRadius:20}}>
+		<div className="animate-fade-down bg-blue-100"  style={{marginTop:'2%',border:1 ,borderRadius:20}}>
 		  <div className="title text-center">
 		  <h2 className="py-2 text-3xl lg:py-4 lg:pt-8 lg:text-4xl font-roboto font-bold uppercase  text-zinc-800 text-center">
         	Tour
       	  </h2>
 		  </div>
-		  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-8 pl-3 p-2 pr-4 overflow-hidden">
+		  <div>
+			{
+				data.length > 0 ?
+				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-8 pl-3 p-2 pr-4 overflow-hidden">
 			{data.map((destination, _id) => (
 			  <div
 				key={_id}
@@ -83,6 +87,22 @@ export default function Tours({ searchTerm }) {
 				</div>
 			  </div>
 			))}
+			</div>
+			:
+			<div style={{
+				display:'flex' , 
+				flexDirection:'row' , 
+				justifyContent:'center'
+				}}
+			>
+				<Lottie
+					loop
+					path='https://lottie.host/a54ade1a-41c0-416b-99d6-1eef009a060a/EW4yHQzNRr.json'
+					play
+					style={{width:'30%' , height:'20%' , justifyContent:'center'}}
+				/>
+		  </div>
+			}
 		  </div>
 		</div>
 	  );

@@ -68,7 +68,11 @@ export default function Navbar() {
   return (
     <AppBar
       position="sticky"
-      sx={{ backgroundColor: "white" }}
+      sx={{ 
+        backgroundColor: "white" ,
+        border:1 , 
+        borderRadius : 3
+      }}
       className="animate-fade-down"
     >
       <Container maxWidth="xl">

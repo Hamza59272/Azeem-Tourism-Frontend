@@ -22,7 +22,7 @@ export default function ScrollToTop() {
 			<div className="flex">
 				<FloatingWhatsApp
 					phoneNumber="+971522760013"
-					chatMessage=""
+					chatMessage="Hy How I can Help you"
 					messageDelay="1"
 					accountName="Azeem Tourism"
 				/>

@@ -5,6 +5,7 @@ import { Button, Card } from "flowbite-react";
 import SpinnerGif from "../assets/Spinner.gif";
 import { useNavigate } from "react-router-dom";
 import { Spinner } from "flowbite-react";
+import Lottie from "react-lottie-player";
 const Tickets = ({ searchTerm }) => {
   const [data, setData] = useState([]);
   const [reload, setReload] = useState(false);
@@ -44,6 +45,7 @@ const Tickets = ({ searchTerm }) => {
       </div>
     );
   }
+
   return (
     <div className="animate-fade-down bg-lavender" style={{ marginTop:'2%', border:1,borderRadius: 20}} >
       <div className="title text-center">
@@ -52,7 +54,10 @@ const Tickets = ({ searchTerm }) => {
       </h2>
 
       </div>
-      <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-8 pl-3 p-2 pr-4 overflow-hidden">
+      <div>
+      {
+				data.length > 0 ? 
+				<div  className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-8 pl-3 p-2 pr-4 overflow-hidden">
         {data.map((destination, _id) => (
           
             <div
@@ -97,6 +102,23 @@ const Tickets = ({ searchTerm }) => {
 
           
         ))}
+        </div>
+        :
+        <div style={{
+					display:'flex' , 
+					flexDirection:'row' , 
+					justifyContent:'center'
+					}}
+				>
+					<Lottie
+						loop
+						path='https://lottie.host/96d5fb93-33b5-4381-bbf4-1a40936f91b7/Ohohi7RP4O.json'
+
+						play
+            style={{width:'30%' , height:'20%' , justifyContent:'center'}}
+					/>
+			  </div>
+        }
       </div>
     </div>
   );

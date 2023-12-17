@@ -27,6 +27,7 @@ module.exports = {
 				// Sky and Water
 				'rust':'#fabe95',
 				'azure-blue': '#00A3E0',
+				'hover': '#7ec7b3',
 				'deep-blue': '#004777',
 				'light-seafoam': '#6BC4A6',
 				

@@ -1,0 +1,38 @@
+@keyframes rotate {
+    0% {
+      background-position: 100% 0;
+    }
+    100% {
+      background-position: 0 0;
+    }
+  }
+  
+  .gradient-border-container {
+    display: flex;
+    max-width: 15rem; /* Adjust the max width as needed */
+    margin: 0.5rem;
+    overflow: hidden;
+  }
+  
+  .gradient-border-button {
+    flex: 1;
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: center;
+    padding: 1rem;
+    border: none;
+    background-color: white;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background-size: 200% 100%;
+    transition: background-position 0.5s;
+  }
+  
+  .gradient-border-button:hover {
+    animation: rotate 5s infinite linear;
+    border: 4 ;
+    border-color: linear-gradient(45deg, #ff00ff, #0000ff);
+  }
+  
+  
