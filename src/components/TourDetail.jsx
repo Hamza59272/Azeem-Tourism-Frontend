@@ -54,7 +54,7 @@ const PackageDetails = () => {
   }, []);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+   // window.scrollTo(0, 0);
   }, []);
 
   const handleCurrencyToggle = () => {
@@ -158,7 +158,7 @@ const PackageDetails = () => {
           <div className="w-full lg:justify-left">
             <div className="flex flex-col lg:flex-row lg:gap-x-10 justify-center ">
               <div className="w-full justify-center ">
-                <h2 className="text-2xl  lg:text-2xl text-center font-bold font-inter text-zinc-800 text-left">
+                <h2 className="p-2 text-2xl  lg:text-2xl text-center font-bold font-inter text-zinc-800 text-left">
                   {packageObject.title}
                 </h2>
                 <Carousel
@@ -183,22 +183,39 @@ const PackageDetails = () => {
                   </h5>
                   <p className="font-inter">{packageObject.description}</p>
                 </div>
-                <div className="flex ">
-                  <p className="flex text-xl font-inter font-semibold mt-1 gap-x-2">
+                <div className="flex " style={{display:'flex',flexDirection:'row',justifyContent:'center',marginTop:'3%'}}>
+                  <p className="flex text-xl font-inter font-semibold mt-3 gap-x-2">
                     <IoPricetagsOutline className="mt-1" />
                     Price: {fromCurrency === "USD" ? "$" : "AED: "}
                   </p>
-                  <span className="font-inter font-bold text-xl mt-1">
+                  <span className="font-inter font-bold text-xl mt-3">
                     {fromCurrency === "USD"
                       ? packageObject.price
                       : Math.round ((exchangeRate / CurrentCurrency) * packageObject.price,9)}
                   </span>
-                  <Button
-                    className="ml-5 shadow-sm bg-black text-white hover:bg-white hover:text-black transition-colors duration-100 text-xs md:text-sm font-medium text-center rounded-lg md:p-3"
-                    onClick={() => handleCurrencyToggle(fromCurrency)}
-                  >
-                    Change Price to {toCurrency}
-                  </Button>
+                  <button
+            style={{
+              marginTop:'0.8%',
+              padding: "1.25%",
+              backgroundColor: 'black',
+              color: 'white',
+              paddingTop: 4,
+              paddingBottom: 4,
+              paddingLeft: 4,
+              paddingRight: 4,
+              marginLeft: 10,
+              border: 1,
+              borderRadius: 8,
+              transition: 'background-color 0.3s, color 0.3s',
+              
+            }}
+  onClick={() => handleCurrencyToggle(fromCurrency)}
+  onMouseOver={(e) => { e.target.style.backgroundColor = '#7ec7b3' ,  e.target.style.color = 'black'} }  // Change background color on hover
+  onMouseOut={(e) => {e.target.style.backgroundColor = 'black' ,  e.target.style.color = 'white'}}  // Change back to original color on hover out
+>
+  Change Price to {toCurrency}
+</button>
+
 
 
                 </div>
@@ -207,26 +224,29 @@ const PackageDetails = () => {
                 <h5 className="font-bold text-center font-inter text-xl lg:text-2xl">
                   Recent Tours
                 </h5>
-                <div className="overflow-y-auto h-screen px-2">
+                <div className="overflow-y-auto h-screen px-2 shadow-lg">
                   {packagesData.map((item, index) => (
                     <Card
                       key={item.id}
                       imgSrc={item.images[0].image}
-                      className="mb-5 shadow-sm"
+                      className="mb-5 shadow-lg border-2 border-blue-200"
+                      style={{borderRadius:10}}
                     >
                       <div className="">
                         <p className="font-semibold text-center text-xl">
                           {packagesData[index].title}
                         </p>
                         <Button
-                          onClick={() => {
-                            setPackageObject(packagesData[index]);
-                            //navigate(`/packages/${packagesData[index].title}`);
-                          }}
-                          className="shadow-sm bg-zinc-100 text-zinc-800 hover:bg-zinc-800 hover:text-white transition-colors duration-100 text-sm font-medium text-center rounded-lg bg-primary-700 w-full"
-                        >
-                          View
-                        </Button>
+                        onClick={() => {
+                          setPackageObject(packagesData[index]);
+                          //navigate(`/packages/${packagesData[index].title}`);
+                        }}
+                        className="mt-3 shadow-sm border-2 border-black bg-zinc-100 text-zinc-800 hover:bg-zinc-800 hover:text-white transition-colors duration-100 text-sm font-medium text-center rounded-lg bg-primary-700 w-full"
+                        style={{ borderWidth: 2, borderColor: 'black' }}
+                      >
+                        View
+                      </Button>
+
                       </div>
                     </Card>
                   ))}
@@ -254,7 +274,9 @@ const PackageDetails = () => {
                 resetForm();
               }}
             >
-              <Form className="border-2 bg-white shadow-lg rounded px-4 md:px-8 pt-6 pb-8 mb-4">
+              <Form className="border-2 bg-blue-200 shadow-lg rounded-lg px-4 md:px-8 pt-6 pb-8 mb-4"
+                style={{ borderRadius: 20 }}
+                >
                 <InputTextField
                   label="Full Name"
                   name="full_name"
@@ -298,12 +320,13 @@ const PackageDetails = () => {
                   className="mb-4"
                 />
                 <div className=" flex justify-center mt-5">
-                  <Button
-                    type="submit"
-                    className="shadow-sm  lg:w-48 bg-zinc-100  text-zinc-800 hover:bg-zinc-800 hover:text-white transition-colors duration-100  text-sm font-medium text-center rounded-lg bg-primary-700 w-full"
-                  >
-                    Proceed
-                  </Button>
+                <Button
+  type="submit"
+  className="shadow-sm lg:w-48 border-2 border-black text-zinc-800 hover:bg-zinc-800 hover:text-white transition-colors duration-100 text-md font-medium text-center rounded-lg bg-primary-700 w-full"
+>
+  Proceed
+</Button>
+
                 </div>
               </Form>
             </Formik>

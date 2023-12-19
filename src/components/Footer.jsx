@@ -5,14 +5,28 @@ import { AiOutlinePhone } from "react-icons/ai";
 import { FaHome, FaPhoneAlt } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
+import bgImage from "../assets/bg.jpg";
 const Footer = () => {
   const navigate = useNavigate();
   return (
-    <div className="bg-zinc-800 text-white p-6 flex-col justify-center items-center mt-4">
-      <ul className="gap-x-5 lg:gap-x-10 flex justify-center flex-row flex-wrap ">
+    <div className="bg-zinc-800 text-white p-6 flex-col justify-center items-center mt-4"   
+    style={{
+      backgroundImage: `url(${bgImage})`,
+      backgroundSize: '100%',
+      backgroundRepeat: "no-repeat",
+      display : 'flex',
+      flexDirection : "column",
+      border:1,
+      borderRadius:10,
+      boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
+      //width:'100%'
+    }}>
+
+      <div>
+        <ul className="gap-x-5 lg:gap-x-10 flex justify-center flex-row flex-wrap ">
         <li>
           <p
-            className="font-semibold cursor-pointer  hover:text-yellow-300 transition ease-in-out duration-500  "
+            className="font-bold cursor-pointer  hover:text-yellow-300 transition ease-in-out duration-500  "
             onClick={() => {
               navigate("/");
             }}
@@ -22,7 +36,7 @@ const Footer = () => {
         </li>
         <li>
           <p
-            className="font-semibold cursor-pointer hover:text-yellow-300 transition ease-in-out duration-500  "
+            className="font-bold cursor-pointer hover:text-yellow-300 transition ease-in-out duration-500  "
             onClick={() => {
               navigate("/packages");
             }}
@@ -32,7 +46,7 @@ const Footer = () => {
         </li>
         <li>
           <p
-            className="font-semibold cursor-pointer hover:text-yellow-300 transition ease-in-out duration-500  "
+            className="font-bold cursor-pointer hover:text-yellow-300 transition ease-in-out duration-500  "
             onClick={() => {
               navigate("/tours");
             }}
@@ -42,7 +56,7 @@ const Footer = () => {
         </li>
         <li>
           <p
-            className="font-semibold cursor-pointer hover:text-yellow-300 transition ease-in-out duration-500  "
+            className="font-bold cursor-pointer hover:text-yellow-300 transition ease-in-out duration-500  "
             onClick={() => {
               navigate("/tickets");
             }}
@@ -52,7 +66,7 @@ const Footer = () => {
         </li>
         <li>
           <p
-            className="font-semibold cursor-pointer hover:text-yellow-300 transition ease-in-out duration-500  "
+            className="font-bold cursor-pointer hover:text-yellow-300 transition ease-in-out duration-500  "
             onClick={() => {
               navigate("/contact");
             }}
@@ -62,7 +76,7 @@ const Footer = () => {
         </li>
         <li>
           <p
-            className="font-semibold cursor-pointer hover:text-yellow-300 transition ease-in-out duration-500  "
+            className="font-bold cursor-pointer hover:text-yellow-300 transition ease-in-out duration-500  "
             onClick={() => {
               navigate("/about");
             }}
@@ -70,7 +84,9 @@ const Footer = () => {
             About
           </p>
         </li>
-      </ul>
+        </ul>
+      </div>
+      <div>
       <ul className="social__links flex space-x-10 lg:space-x-20 mt-4 justify-center mb-4 ">
         <li>
           <a
@@ -133,6 +149,8 @@ const Footer = () => {
           </a>
         </li>
       </ul>
+      </div>
+      <div>
       <ul className="flex flex-col sm:flex-row sm:space-x-4 justify-center">
         <li className="flex items-center space-x-2">
           <FaPhoneAlt className="w-4 h-4" />
@@ -145,7 +163,7 @@ const Footer = () => {
           </p>
         </li>
       </ul>
-
+      </div>
       <p className="mb-4 text-center">
         <span className="cursor-pointer font-light">Azeem Tourism</span>
       </p>

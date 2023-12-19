@@ -7,12 +7,14 @@ const PackagesCard = React.lazy(() => import("./PackagesCard"));
 const Services = React.lazy(() => import("./Services"));
 const Tickets = React.lazy(() => import("./TicketsCards"));
 const Tours = React.lazy(() => import("./ToursCards"));
+import bgImage from "../assets/fullbg.jpg";
 
 export default function App() {
 	const [searchTerm, setSearchTerm] = useState("");
 
 	return (
-		<div>
+		<div
+		>
 			<Suspense fallback={<div>Loading...</div>}>
 				<Hero />
 				<SearchBar setSearchTerm={setSearchTerm} />

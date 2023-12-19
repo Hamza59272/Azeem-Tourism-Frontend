@@ -7,6 +7,8 @@ import Lottie from 'react-lottie-player'
 import { Button, Card } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
 import { Spinner } from "flowbite-react";
+import bgImage from "../assets/fullbg.jpg";
+
 export default function Tours({ searchTerm }) {
 	const [data, setData] = useState([]);
 	const [reload, setReload] = useState(false);
@@ -46,7 +48,8 @@ export default function Tours({ searchTerm }) {
 		);
 	}
 	return (
-		<div className="animate-fade-down bg-blue-100"  style={{marginTop:'2%',border:1 ,borderRadius:20}}>
+		<div className="animate-fade-down bg-blue-200"  style={{
+			marginTop:'2%',border:1 ,borderRadius:20}}>
 		  <div className="title text-center">
 		  <h2 className="py-2 text-3xl lg:py-4 lg:pt-8 lg:text-4xl font-roboto font-bold uppercase  text-zinc-800 text-center">
         	Tour
@@ -66,7 +69,9 @@ export default function Tours({ searchTerm }) {
 				  alt={destination.title}
 				  className="w-full h-60 object-cover rounded-t-lg"
 				/>
-				<div className="p-4">
+				<div className="p-4"
+					
+				>
 				  <h5 className="text-lg font-semibold mb-2">{destination.title}</h5>
 				  <p className="text-gray-700 text-sm mb-4 h-16 overflow-auto">
 					{destination.description}
