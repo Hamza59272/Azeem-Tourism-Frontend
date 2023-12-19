@@ -5,6 +5,8 @@ import { Button } from "flowbite-react";
 import { BsLinkedin, BsFacebook, BsTiktok, BsInstagram } from "react-icons/bs";
 import { TbBrandThreads } from "react-icons/tb";
 import { HiOutlineMail } from "react-icons/hi";
+import bgImage from "../assets/contactNew.jpg";
+
 const Contact = () => {
 	const [open, setOpen] = React.useState(false);
 	const [message, setMessage] = React.useState("");
@@ -33,12 +35,26 @@ const Contact = () => {
 	};
 
 	return (
-		<section className="bg-white dark:bg-gray-900 animate-fade-down">
-			<div className="py-8 lg:py-10 px-4 mx-auto max-w-screen-md">
-				<h2 className="text-3xl lg:text-4xl font-bold text-center font-inter text-zinc-800 dark:text-gray-100 mb-4">
+		<section className="relative bg-white dark:bg-gray-900 animate-fade-down">
+		
+		<div className="border-2 py-8 lg:py-10 px-4 mx-auto max-w-screen-md mt-4"
+		  style={{
+			position: 'relative',
+			backgroundImage: `url(${bgImage})`,
+			backgroundSize: 'cover',
+			backgroundRepeat: 'no-repeat',
+			display: 'flex',
+			flexDirection: 'column',
+			border: 1,
+			borderRadius: 10,
+			boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+		  }}
+		>
+				
+				<h2 className="text-3xl lg:text-4xl font-bold text-center font-inter text-zinc-800 dark:text-white-100 mb-4">
           Contact Us
 				</h2>
-				<p className="mb-8 lg:mb-16 font-normal text-center text-gray-800 dark:text-gray-400 sm:text-xl">
+				<p className="mb-8 lg:mb-16 font-normal text-center text-zinc-800 dark:text-white sm:text-xl">
           Questions? Need assistance? Ready for your next adventure? 🌍 Contact
           Azeem Tourism using the form below! Our dedicated team is here to help
           make your travel dreams a reality. ✈️🌟 #AzeemTourism #ExploreWithUs
@@ -51,7 +67,7 @@ const Contact = () => {
 									href="https://www.facebook.com/profile.php?id=61552420340278"
 									target="_blank"
 									rel="noreferrer"
-									className="text-black"
+									className="text-zinc-800"
 								>
 									<BsFacebook />
 								</a>
@@ -61,7 +77,7 @@ const Contact = () => {
 									href="https://www.linkedin.com/in/azeem-tourism-60b4b5295/"
 									target="_blank"
 									rel="noreferrer"
-									className="text-black"
+									className="text-zinc-800"
 								>
 									<BsLinkedin />
 								</a>
@@ -71,7 +87,7 @@ const Contact = () => {
 									href="https://www.tiktok.com/@azeem.tourism?_t=8gKyynJGcvH&_r=1"
 									target="_blank"
 									rel="noreferrer"
-									className="text-black"
+									className="text-zinc-800"
 								>
 									<BsTiktok />
 								</a>
@@ -81,7 +97,7 @@ const Contact = () => {
 									href="https://www.threads.net/@azeemtourism"
 									target="_blank"
 									rel="noreferrer"
-									className="text-black"
+									className="text-zinc-800"
 								>
 									<TbBrandThreads />
 								</a>
@@ -91,7 +107,7 @@ const Contact = () => {
 									href="https://instagram.com/azeemtourism?igshid=NGVhN2U2NjQ0Yg=="
 									target="_blank"
 									rel="noreferrer"
-									className="text-black"
+									className="text-zinc-800"
 								>
 									<BsInstagram />
 								</a>
@@ -101,7 +117,7 @@ const Contact = () => {
 									href="mailto:azeemtourism@gmail.com"
 									target="_blank"
 									rel="noreferrer"
-									className="text-black"
+									className="text-zinc-800"
 								>
 									<HiOutlineMail />
 								</a>
@@ -120,14 +136,14 @@ const Contact = () => {
 					<div>
 						<label
 							htmlFor="email"
-							className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+							className="font-bold block mb-2 text-sm font-medium text-white dark:text-gray-300"
 						>
               Your email
 						</label>
 						<input
 							type="email"
 							id="email"
-							className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+							className="shadow-sm bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
 							placeholder="your email here"
 							required
 						/>
@@ -135,7 +151,7 @@ const Contact = () => {
 					<div>
 						<label
 							htmlFor="subject"
-							className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+							className="font-bold block mb-2 text-sm font-medium text-white dark:text-gray-300"
 						>
               Subject
 						</label>
@@ -150,9 +166,9 @@ const Contact = () => {
 					<div className="sm:col-span-2">
 						<label
 							htmlFor="message"
-							className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+							className="font-bold block mb-2 text-sm font-medium text-white dark:text-gray-400"
 						>
-              Your message
+              				Your message
 						</label>
 						<textarea
 							id="message"
@@ -167,7 +183,7 @@ const Contact = () => {
 							onClick={(e) => {
 								sendEmail(e);
 							}}
-							className="shadow-sm bg-zinc-100 text-zinc-800 hover:bg-zinc-800 hover:text-white transition-colors duration-100 text-sm font-medium text-center rounded-lg bg-primary-700 w-full"
+							className="font-bold shadow-sm bg-zinc-100 text-white hover:bg-zinc-800 hover:text-white transition-colors duration-100 text-sm font-medium text-center rounded-lg bg-primary-700 w-full"
 						>
               Send message
 						</Button>

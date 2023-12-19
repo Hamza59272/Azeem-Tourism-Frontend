@@ -4,18 +4,14 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
+import { MenuItem } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
-
-import React from "react";
-import { useState, useRef, useEffect } from "react";
-import AzeemTourism from "../assets/logo.png";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import AzeemTourism from "../assets/logo.png";
+
 export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -30,6 +26,7 @@ export default function Navbar() {
     { name: "Contact", link: "/contact" },
     { name: "About", link: "/about" },
   ];
+
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (node.current.contains(e.target)) {
@@ -45,6 +42,8 @@ export default function Navbar() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
+
+    
   }, []);
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -53,6 +52,7 @@ export default function Navbar() {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -64,14 +64,44 @@ export default function Navbar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  const getGradient = () => {
+    if (location.pathname.includes("/packages")) {
+      return "linear-gradient(90deg, #fabe95 0%, #182848 100%)";
+    } else if (location.pathname.includes("/tours")) {
+      return "linear-gradient(90deg, #6BC4A6 0%, #182848 100%)";
+    } else if (location.pathname.includes("/tickets")) {
+      return "linear-gradient(90deg, #DFC5FE -20%, #182848 100%)";
+    }else if (location.pathname.includes("/about")) {
+      return "linear-gradient(90deg, #7ec7b3 0%, #182848 100%)";
+    }else if (location.pathname.includes("/contact")) {
+      return "linear-gradient(90deg, #95A3AE 0%, #182848 100%)";
+    } else {
+      return "linear-gradient(90deg, #4b6cb8 0%, #182848 100%)";
+    }
+  };
+
+  const getColors = () => {
+    if (location.pathname.includes("/packages")) {
+      return "#fabe95";
+    } else if (location.pathname.includes("/tours")) {
+      return "#6BC4A6";
+    } else if (location.pathname.includes("/tickets")) {
+      return "#DFC5FE";
+    }else if (location.pathname.includes("/about")) {
+      return "#7ec7b3";
+    } else {
+      return "#4b6cb8";
+    }
+  };
 
   return (
     <AppBar
       position="sticky"
-      sx={{ 
-        backgroundColor: "white" ,
-        border:1 , 
-        borderRadius : 3
+      sx={{
+        background: getGradient(),
+        border: 1,
+        borderRadius: 3,
+        boxShadow: "0px 2px 4px -1px rgba(0,0,0,0.1)",
       }}
       className="animate-fade-down"
     >
@@ -99,7 +129,7 @@ export default function Navbar() {
                 width={64}
                 height={64}
               />
-              <p className="lg:text-xl font-bold font-inter text-zinc-800 text-center pt-3">
+              <p className="lg:text-xl font-bold font-inter text-white text-center pt-0">
                 Azeem Tourism
               </p>
             </div>
@@ -160,33 +190,6 @@ export default function Navbar() {
             </Menu>
           </Box>
 
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            <div className="flex items-center space-x-3 rtl:space-x-reverse no-underline cursor-pointer">
-              <img
-                src={AzeemTourism}
-                className="h-8 lg:h-16"
-                alt="Azeen Toursim logo"
-              />
-              {/* <p className="lg:text-xl font-bold font-inter text-zinc-800 text-center pt-2">
-                Azeem Tourism
-              </p> */}
-            </div>
-          </Typography>
           <Box
             sx={{
               flexGrow: 1,
@@ -205,13 +208,19 @@ export default function Navbar() {
                 key={item.name}
                 onClick={() => navigate(item.link)}
                 sx={{
-                  color: location.pathname === item.link ? "white" : "#27272a",
+                  color: location.pathname === item.link ? "white" : "#fff",
                   backgroundColor:
-                    location.pathname === item.link ? "#27272a" : "transparent",
+                    location.pathname === item.link
+                      ? getColors()
+                      : "transparent",
                   display: "block",
                   fontFamily: "Inter",
                   fontWeight: 600,
                   fontSize: "lg",
+                  transition: "background-color 0.3s",
+                  "&:hover": {
+                    backgroundColor: getColors()
+                  },
                 }}
               >
                 {item.name}
