@@ -15,28 +15,19 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InputAdornment from "@mui/material/InputAdornment";
+import signin from '../assets/signin.jpg'
 import IconButton from "@mui/material/IconButton";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-const ThemeColor = createTheme({
-  palette: { primary: { main: "#27272a", contrastText: "#fff" } },
-});
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit">Azeem Tourism</Link> {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 
-// TODO remove, this demo shouldn't need to reset the theme.
+const ThemeColor = createTheme({
+  palette: {
+    primary: { main: "#3498db", contrastText: "#fff" },
+  },
+  typography: {
+    fontFamily: 'Roboto, sans-serif',
+  },
+});
 
 export default function SignInSide() {
   const navigateTo = useNavigate();
@@ -46,7 +37,6 @@ export default function SignInSide() {
   const [passerror, setpasserror] = React.useState("");
   const [values, setValues] = React.useState({
     password: "",
-
     showPassword: false,
   });
 
@@ -54,6 +44,7 @@ export default function SignInSide() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
   };
+
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
@@ -92,6 +83,7 @@ export default function SignInSide() {
       setemail("");
       setpass("");
     }
+
     if (!/.+@.+\.[A-Za-z]+$/.test(email)) {
       setemailerror("Enter Valid Email");
     }
@@ -100,43 +92,56 @@ export default function SignInSide() {
       setpasserror("Enter Correct Password");
     }
   };
+
   return (
     <ThemeProvider theme={ThemeColor}>
       <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
         <Grid
-          item
-          xs={false}
-          sm={4}
-          md={7}
-          sx={{
-            backgroundImage:
-              "url(https://source.unsplash.com/random?wallpapers)",
-            backgroundRepeat: "no-repeat",
-            backgroundColor: (t) =>
-              t.palette.mode === "light"
-                ? t.palette.grey[50]
-                : t.palette.grey[900],
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-          <Box
+            item
+            xs={12}
+            sm={8}
+            md={5}
+            backgroundColor={'#ffff'}
+            component={Paper}
+            elevation={6}
+            square
             sx={{
-              my: 8,
-              mx: 4,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
+              border: 0.2,
+              borderColor:'blue',
+              borderRadius: 10,
+              boxShadow: 10,
+              display: 'flex',
+              justifyContent: 'center',
+              flexDirection: 'column',
+              height: '90vh',
+              margin: 'auto',
+              mt: 2,
+              mb: 2,
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign in
-            </Typography>
+            <Box
+              sx={{
+                my: 8,
+                mx: 4,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifySelf: 'center',
+                backgroundImage: `url(${signin})`,
+                        backgroundSize: '35% 35%', 
+                        backgroundRepeat:  'no-repeat',
+                       
+                        backgroundPosition: 'right top',
+              }}
+            >
+    
+    <Avatar sx={{ m: 1, bgcolor: 'primary.main', }}>
+      <LockOutlinedIcon />
+    </Avatar>
+    <Typography component="h1" variant="h5" >
+      Sign in
+    </Typography>
             <Box component="form" noValidate onSubmit={submit} sx={{ mt: 1 }}>
               <TextField
                 variant="outlined"
@@ -152,8 +157,9 @@ export default function SignInSide() {
                   setemail(e.target.value);
                   setemailerror("");
                 }}
-                error={emailerror}
+                error={!!emailerror}
                 helperText={emailerror}
+                sx={{ borderRadius: 20 ,marginTop:'10%'}}
               />
               <TextField
                 variant="outlined"
@@ -167,12 +173,11 @@ export default function SignInSide() {
                   setpass(e.target.value);
                   setpasserror("");
                 }}
-                error={passerror}
+                error={!!passerror}
                 helperText={passerror}
                 autoComplete="current-password"
                 type={values.showPassword ? "text" : "password"}
                 value={pass}
-                // onChange={handleChange('password')}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment>
@@ -191,32 +196,29 @@ export default function SignInSide() {
                     </InputAdornment>
                   ),
                 }}
+                sx={{ borderRadius: 20 }}
               />
               <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Sign In
-              </Button>
-              {/* <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link href="#" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
-              </Grid> */}
-              <Copyright sx={{ mt: 5 }} />
+                    control={<Checkbox color="primary" />}
+                    label="Remember me"
+                    sx={{ mt: 1 }}
+                  />
+                  <Box sx={{ mt: 2, width: '100%', display: 'flex', justifyContent: 'center' }}>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      color="primary"
+                      sx={{ borderRadius: 20, width: '30%' }}
+                    >
+                      Sign In
+                    </Button>
+                  </Box>
+
+              <Typography variant="body2" color="text.secondary" align="center" sx={{ mt: 5 }}>
+                {"Copyright © "}
+                <Link color="inherit">Azeem Tourism</Link> {new Date().getFullYear()}
+                {"."}
+              </Typography>
             </Box>
           </Box>
         </Grid>
