@@ -163,6 +163,106 @@ export default function MainListItems() {
           <ListItemText primary="Inactive Tours" />
         </ListItemButton>
       </p>
+      {/* new work */}
+
+      <p
+        style={{ cursor: "pointer" }}
+        onClick={() => {
+          navigate("/admin/managehotels");
+        }}
+        underline="none"
+        color="# 27272a"
+      >
+        <ListItemButton>
+          <ListItemIcon>
+            <DashboardIcon sx={{ color: "# 27272a" }} />
+          </ListItemIcon>
+          <ListItemText primary="Manage Hotels" />
+        </ListItemButton>
+      </p>
+
+      <p
+        style={{ cursor: "pointer" }}
+        onClick={() => {
+          navigate("/admin/AddHotels");
+        }}
+        underline="none"
+        color="# 27272a"
+      >
+        <ListItemButton>
+          <ListItemIcon>
+            <AddIcon sx={{ color: "# 27272a" }} />
+          </ListItemIcon>
+          <ListItemText primary="Add Hotels" />
+        </ListItemButton>
+      </p>
+    
+
+      <p
+        style={{ cursor: "pointer" }}
+        onClick={() => {
+          navigate("/admin/manageinactivehotels");
+        }}
+        underline="none"
+        color="# 27272a"
+      >
+        <ListItemButton>
+          <ListItemIcon>
+            <VisibilityOffIcon sx={{ color: "# 27272a" }} />
+          </ListItemIcon>
+          <ListItemText primary="Inactive Hotels" />
+        </ListItemButton>
+      </p>
+
+      <p
+        style={{ cursor: "pointer" }}
+        onClick={() => {
+          navigate("/admin/manageVisas");
+        }}
+        underline="none"
+        color="# 27272a"
+      >
+        <ListItemButton>
+          <ListItemIcon>
+            <DashboardIcon sx={{ color: "# 27272a" }} />
+          </ListItemIcon>
+          <ListItemText primary="Manage Visas" />
+        </ListItemButton>
+      </p>
+
+      <p
+        style={{ cursor: "pointer" }}
+        onClick={() => {
+          navigate("/admin/AddVisas");
+        }}
+        underline="none"
+        color="# 27272a"
+      >
+        <ListItemButton>
+          <ListItemIcon>
+            <AddIcon sx={{ color: "# 27272a" }} />
+          </ListItemIcon>
+          <ListItemText primary="Add Visas" />
+        </ListItemButton>
+      </p>
+    
+
+      <p
+        style={{ cursor: "pointer" }}
+        onClick={() => {
+          navigate("/admin/manageinactivevisas");
+        }}
+        underline="none"
+        color="# 27272a"
+      >
+        <ListItemButton>
+          <ListItemIcon>
+            <VisibilityOffIcon sx={{ color: "# 27272a" }} />
+          </ListItemIcon>
+          <ListItemText primary="Inactive Visas" />
+        </ListItemButton>
+      </p>
+
     </React.Fragment>
   );
 }

@@ -12,12 +12,20 @@ const EditPackageDetails = lazy(() => import("./components/EditPackageDetails"))
 const ManagePackages = lazy(() => import("./components/ManagePackages"));
 const ManageInactiveTickets = lazy(() => import("./components/ManageInactiveTickets"));
 const AddTickets = lazy(() => import("./components/AddTickets"));
+const AddHotels = lazy(() => import("./components/AddHotels"));
+const AddVisas = lazy(() => import("./components/AddVisas"));
 const ManageTickets = lazy(() => import("./components/ManageTickets"));
+const ManageHotels = lazy(() => import("./components/ManageHotels"));
+const ManageVisas = lazy(() => import("./components/ManageVisas"));
 const EditTicketDetails = lazy(() => import("./components/EditTicketDetails"));
 const AddTours = lazy(() => import("./components/AddTours"));
 const ManageTours = lazy(() => import("./components/ManageTours"));
 const EditTourDetails = lazy(() => import("./components/EditTourDetails"));
 const ManageInactiveTours = lazy(() => import("./components/ManageInactiveTours"));
+const ManageInactiveHotels = lazy(() => import("./components/ManageInactiveHotels"));
+const ManageInactiveVisas = lazy(() => import("./components/ManageInactiveVisas"));
+const EditHotelDetails = lazy(() => import("./components/EditHotelDetails"));
+const EditVisaDetails = lazy(() => import("./components/EditVisaDetails"));
 
 function App() {
 	if (!localStorage.getItem("accessToken")) {
@@ -65,6 +73,34 @@ function App() {
 							path="/admin/manageinactivetours"
 							element={<ManageInactiveTours />}
 						/>
+
+						<Route path="/admin/AddHotels" 
+								element={<AddHotels />} />
+						<Route path="/admin/managehotels" 
+								element={<ManageHotels />} />
+						<Route
+							path="/admin/manageinactivehotels"
+							element={<ManageInactiveHotels />}
+						/>
+						<Route path="/admin/editHotelDetails" 
+						element={<EditHotelDetails />} />
+
+						<Route path="/admin/AddVisas" 
+								element={<AddVisas />} />
+
+						<Route path="/admin/manageVisas" 
+								element={<ManageVisas />} />
+
+						<Route
+							path="/admin/manageinactivevisas"
+							element={<ManageInactiveVisas />}
+						/>
+
+						<Route path="/admin/EditVisaDetails" 
+							element={<EditVisaDetails />} />
+
+
+
 						<Route
 							path="/*"
 							element={<NotFound />}
