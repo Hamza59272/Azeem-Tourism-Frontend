@@ -120,6 +120,9 @@ export default function AdminHotelCard() {
                   </div>
                   <p className="font-bold text-md">{"$" + destination.price}</p>
                 </div>
+                <p className="text-justify w-full h-24 overflow-auto font-normal text-zinc-700 text-sm mt-0">
+                  For Region: {''}{destination.country ?  destination.country : null}
+                </p>
                 <div className="flex justify-around bg-white text-zinc-800 hover:text-white transition-colors duration-100 text-md font-medium text-center rounded-lg bg-primary-700 w-full">
                   <Tooltip title="Edit">
                     {/* navigate("/admin/editPackageDetails", {

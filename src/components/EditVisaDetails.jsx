@@ -37,6 +37,7 @@ export default function Checkout() {
   const [country, setCountry] = useState(packageData.phoneNumber);
   const [totalCount, setTotalCount] = useState(packageData.duration);
   const [price, setPrice] = useState(packageData.price);
+  const [region , setRegion] = useState(packageData.country)
   const [error, seterror] = React.useState("");
   const [imagesList, setImagesList] = useState([]);
   const [videosList, setVideosList] = useState([]);
@@ -80,6 +81,7 @@ export default function Checkout() {
         images: imagesList,
         videos: videosList,
         duration: totalCount,
+        country: region,
         price: price,
         active: true,
       };
@@ -128,6 +130,8 @@ export default function Checkout() {
             price={price}
             setPrice={setPrice}
             packageData={packageData}
+            setRegion={setRegion}
+            region = {region}
           />
         );
       case 1:
@@ -146,6 +150,7 @@ export default function Checkout() {
             videoFileName={videoFileName}
             price={price}
             totalCount={totalCount}
+            region = {region}
           />
         );
       default:

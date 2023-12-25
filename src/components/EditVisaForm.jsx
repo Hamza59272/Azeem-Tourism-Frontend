@@ -8,7 +8,10 @@ import Checkbox from "@mui/material/Checkbox";
 import Stack from "@mui/material/Stack";
 import IconButton from "@mui/material/IconButton";
 import CollectionsIcon from "@mui/icons-material/Collections";
+import InputLabel from '@material-ui/core/InputLabel';
 import Button from "@mui/material/Button";
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 import SendIcon from "@mui/icons-material/Send";
 import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
@@ -41,7 +44,13 @@ export default function EditForm({
   price,
   setPrice,
   packageData,
+  setRegion,
+  region
 }) {
+
+  const handleRegionChange = (event) => {
+    setRegion(event.target.value);
+  };
   const handleUploadImage = () => {
     let widget = window.cloudinary.createUploadWidget(
       {
@@ -262,6 +271,20 @@ export default function EditForm({
               setTotalCount(e.target.value);
             }}
           />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+        <InputLabel id="region-select-label">Region</InputLabel>
+        <Select
+            value={region}
+            onChange={handleRegionChange}
+            displayEmpty
+            fullWidth
+            sx={{height:30}}
+          >
+            <MenuItem  sx={{height:30}} value="Both"><em>None</em></MenuItem>
+            <MenuItem  sx={{height:30}} value="Pakistan">Pakistan</MenuItem>
+            <MenuItem  sx={{height:30}} value="UAE">UAE</MenuItem>
+          </Select>
         </Grid>
       </Grid>
     </React.Fragment>

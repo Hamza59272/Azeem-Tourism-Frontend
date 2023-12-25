@@ -1,20 +1,35 @@
-import React, { useState, Suspense } from "react";
+import React, { useEffect ,useState, Suspense } from "react";
 import ScrollToTop from "./ScrollToTop";
 import SearchBar from "./SearchBar";
+import CountrySelectionModal from './Modal'; 
 
 const Hero = React.lazy(() => import("./Hero"));
 const PackagesCard = React.lazy(() => import("./PackagesCard"));
 const Services = React.lazy(() => import("./Services"));
 const Tickets = React.lazy(() => import("./TicketsCards"));
 const Tours = React.lazy(() => import("./ToursCards"));
+const Visas = React.lazy(() => import("./VisasCard"));
 import bgImage from "../assets/fullbg.jpg";
 
 export default function App() {
 	const [searchTerm, setSearchTerm] = useState("");
+    const [showModal, setShowModal] = useState(false);
 
+	useEffect(() => {
+        // Check if the country is already selected and stored in localStorage
+        const country = localStorage.getItem("country");
+        if (!country) {
+            setShowModal(true); 
+        }
+    }, [showModal]);
+
+    const handleCountrySelect = (country) => {
+			localStorage.setItem("country", country);
+        	setShowModal(false); 
+    };
 	return (
-		<div
-		>
+		<div>
+			<CountrySelectionModal open={showModal} onSelect={handleCountrySelect} />
 			<Suspense fallback={<div>Loading...</div>}>
 				<Hero />
 				<SearchBar setSearchTerm={setSearchTerm} />
@@ -25,5 +40,7 @@ export default function App() {
 			</Suspense>
 			<ScrollToTop />
 		</div>
+	
+		
 	);
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -247,11 +248,19 @@ function EnhancedTableToolbar(props) {
       )}
 
       {numSelected > 0 ? (
-        <Tooltip title="Delete">
-          <IconButton>
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
+        
+        <>
+          <Tooltip title="Copy">
+            <IconButton onClick={() => props.onCopy()}>
+              <ContentCopyIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Delete">
+            <IconButton>
+              <DeleteIcon />
+            </IconButton>
+          </Tooltip>
+       </>
       ) : (
         ""
       )}
@@ -267,6 +276,8 @@ export default function EnhancedTable() {
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("calories");
   const [selected, setSelected] = React.useState([]);
+  const [copiedData, setCopiedData] = React.useState(null);
+
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -283,6 +294,16 @@ export default function EnhancedTable() {
         // event.preventDefault();
       });
   }, []);
+
+  const handleCopy = () => {
+    const selectedRows = rows.filter(row => selected.includes(row.id));
+    if (selectedRows.length > 0) {
+      setCopiedData(selectedRows);
+      navigator.clipboard.writeText(JSON.stringify(selectedRows, null, 2));
+      // You can also add some notification or state update to indicate success
+    }
+  };
+  
 
   let rows = [];
   orderDetails.map((item, index) => {
@@ -365,7 +386,7 @@ export default function EnhancedTable() {
   return (
     <Box sx={{ width: "100%", padding: 2 }}>
       <Paper sx={{ width: "100%" }}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+      <EnhancedTableToolbar numSelected={selected.length} onCopy={handleCopy} />
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}

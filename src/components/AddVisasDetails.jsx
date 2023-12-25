@@ -27,6 +27,7 @@ export default function Checkout() {
   const [state, setState] = useState("");
   const [zip, setZip] = useState(0);
   const [country, setCountry] = useState("");
+  const [region , setRegion] = useState("")
   const [totalCount, setTotalCount] = useState(0);
   const [price, setPrice] = useState(0);
   const [error, seterror] = React.useState("");
@@ -73,6 +74,7 @@ export default function Checkout() {
       videos: videosList,
       duration: totalCount,
       price: price,
+      country: region,
       active: true,
     };
     const URL = "http://localhost:8080/api/visas/create";
@@ -119,6 +121,8 @@ export default function Checkout() {
             setTotalCount={setTotalCount}
             price={price}
             setPrice={setPrice}
+            setRegion={setRegion}
+            region = {region}
           />
         );
       case 1:
@@ -137,6 +141,7 @@ export default function Checkout() {
             videoFileName={videoFileName}
             price={price}
             totalCount={totalCount}
+            region = {region}
           />
         );
       default:
