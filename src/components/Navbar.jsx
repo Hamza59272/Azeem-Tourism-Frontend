@@ -23,6 +23,8 @@ export default function Navbar() {
     { name: "Packages", link: "/packages" },
     { name: "Tours", link: "/tours" },
     { name: "Tickets", link: "/tickets" },
+    { name: "Visas", link: "/visas" },
+    { name: "Hotels", link: "/hotels" },
     { name: "Contact", link: "/contact" },
     { name: "About", link: "/about" },
   ];
@@ -75,7 +77,12 @@ export default function Navbar() {
       return "linear-gradient(90deg, #7ec7b3 0%, #182848 100%)";
     }else if (location.pathname.includes("/contact")) {
       return "linear-gradient(90deg, #95A3AE 0%, #182848 100%)";
-    } else {
+    }else if (location.pathname.includes("/visas")) {
+      return "linear-gradient(90deg, #6BC4A6 0%, #182848 100%)";
+    }
+    else if (location.pathname.includes("/hotels")) {
+        return "linear-gradient(90deg, #fabe95 0%, #182848 100%)";
+    }  else {
       return "linear-gradient(90deg, #4b6cb8 0%, #182848 100%)";
     }
   };
@@ -89,6 +96,12 @@ export default function Navbar() {
       return "#DFC5FE";
     }else if (location.pathname.includes("/about")) {
       return "#7ec7b3";
+    }else if (location.pathname.includes("/visas")) {
+        return "#6BC4A6";
+    }
+    else if (location.pathname.includes("/hotels")) {
+        return "#fabe95";
+      
     } else {
       return "#4b6cb8";
     }
