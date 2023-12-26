@@ -32,6 +32,7 @@ export default function Checkout() {
   const [desc, setDesc] = useState(packageData.description);
   const [address, setAddress] = useState(packageData.location);
   const [city, setCity] = useState(null);
+  const [region , setRegion] = useState(packageData.region)
   const [state, setState] = useState(null);
   const [zip, setZip] = useState(null);
   const [country, setCountry] = useState(null);
@@ -74,6 +75,7 @@ export default function Checkout() {
         description: desc,
         location: address,
         images: imagesList,
+        region: region,
         price: price,
         active: true,
     };
@@ -122,6 +124,8 @@ export default function Checkout() {
             price={price}
             setPrice={setPrice}
             packageData={packageData}
+            setRegion={setRegion}
+            region = {region}
           />
         );
       case 1:
@@ -133,6 +137,7 @@ export default function Checkout() {
             imageFileName={imageFileName}
             imageFileUrl={imageFileUrl}
             price={price}
+            region = {region}
           />
         );
       default:
