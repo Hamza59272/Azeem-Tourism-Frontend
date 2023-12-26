@@ -45,6 +45,7 @@ export default function HotelReview({
   imageFileName,
   imageFileUrl,
   price,
+  region
 }) {
   return (
     <React.Fragment>
@@ -81,6 +82,12 @@ export default function HotelReview({
         <ListItem key={title} xs={12} sm={6} sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Price" />
           <Typography variant="body2">{price}</Typography>
+        </ListItem>
+      </List>
+      <List disablePadding>
+        <ListItem key={title} xs={12} sm={6} sx={{ py: 1, px: 0 }}>
+          <ListItemText primary="Region: " />
+          <Typography variant="body2">{region}</Typography>
         </ListItem>
       </List>
      

@@ -74,7 +74,7 @@ export default function Checkout() {
       videos: videosList,
       duration: totalCount,
       price: price,
-      country: region,
+      region: region,
       active: true,
     };
     const URL = "http://localhost:8080/api/visas/create";

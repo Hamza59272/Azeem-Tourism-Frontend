@@ -29,6 +29,7 @@ export default function Checkout() {
   const [country, setCountry] = useState("");
   const [totalCount, setTotalCount] = useState(0);
   const [price, setPrice] = useState(0);
+  const [region , setRegion] = useState("")
   const [error, seterror] = React.useState("");
   const [imagesList, setImagesList] = useState([]);
   const [videosList, setVideosList] = useState([]);
@@ -65,7 +66,8 @@ export default function Checkout() {
         description: desc,
         location: address,
         images: imagesList,
-        price: price,
+        price: price,  
+        region: region,
         active: true,
     };
     const URL = "http://localhost:8080/api/hotels/create";
@@ -113,6 +115,8 @@ export default function Checkout() {
             setTotalCount={setTotalCount}
             price={price}
             setPrice={setPrice}
+            setRegion={setRegion}
+            region = {region}
           />
         );
       case 1:
@@ -124,6 +128,7 @@ export default function Checkout() {
             imageFileName={imageFileName}
             imageFileUrl={imageFileUrl}
             price={price}
+            region = {region}
           />
         );
       default:

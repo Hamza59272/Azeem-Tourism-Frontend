@@ -81,7 +81,7 @@ export default function Checkout() {
         images: imagesList,
         videos: videosList,
         duration: totalCount,
-        country: region,
+        region: region,
         price: price,
         active: true,
       };
