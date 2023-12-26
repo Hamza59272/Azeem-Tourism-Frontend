@@ -16,6 +16,7 @@ const Visas = lazy(() => import("../components/VisasCard"));
 const TicketDetail = lazy(() => import("../components/TicketDetail"));
 const TourDetail = lazy(() => import("../components/TourDetail"));
 const VisaDetail = lazy(() => import("../components/VisaDetail"));
+const Invoice = lazy(() => import("../components/Invoice"));
 //const NotFound = lazy(() => import("../components/NotFound"));
 
 import SpinnerGif from "../assets/Spinner.gif";
@@ -47,6 +48,7 @@ export default function App() {
 				<Route path="/contact" element={<Contact />} />
 				<Route path="/admin/signin" element={<Signin />} />
 				<Route path="/payment/confirm" element={<SuccessPayment />} />
+				<Route path="/invoice" element={<Invoice />} />
 				<Route path="/tickets/:slug" element={<TicketDetail />} />
 				<Route path="/tours/:slug" element={<TourDetail />} />
 				<Route path="/visas/:slug" element={<VisaDetail />} />

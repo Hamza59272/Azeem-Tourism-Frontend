@@ -25,7 +25,7 @@ const PackageDetails = () => {
   const [CurrentCurrency, setCurrentCurrency ] = useState()
 
   useEffect(() => {
-    const URL = "http://localhost:8080/api/tickets/get";
+    const URL = "https://backend.azeemtourism.com/api/tickets/get";
     axios
       .get(URL)
       .then((response) => {
@@ -101,7 +101,7 @@ const PackageDetails = () => {
       pickup_location,
     } = values;
     axios
-      .post(`http://localhost:8080/api/payments/intent`, {
+      .post(`https://backend.azeemtourism.com/api/payments/intent`, {
         packageCharges: packageObject.price * total_persons,
       })
       .then((response) => {
@@ -182,7 +182,10 @@ const PackageDetails = () => {
                   </h5>
                   <p className="font-inter">{packageObject.description}</p>
                 </div>
-                <div className="flex ">
+                <div className="d-flex mt-4 align-items-center gap-1 section__description font-bold">
+                    Available Tickets {packageObject.totalCount}
+                  </div>
+                <div className="flex " style={{display:'flex',flexDirection:'row',justifyContent:'center',marginTop:'3%'}}>
                 <p className="flex text-xl font-inter font-semibold mt-1 gap-x-2">
                     <IoPricetagsOutline className="mt-1" />
                     Price: {fromCurrency === "USD" ? "$" : "AED: "}
@@ -193,18 +196,13 @@ const PackageDetails = () => {
                       : Math.round ((exchangeRate / CurrentCurrency) * packageObject.price,9)}
                   </span>
                   <Button
-                    className="ml-5 shadow-sm bg-black text-white hover:bg-white hover:text-black transition-colors duration-100 text-xs md:text-sm font-medium text-center rounded-lg md:p-3"
+                    className="ml-5 shadow-sm bg-black text-white hover:bg-white hover:text-black transition-colors duration-100 text-xs md:text-sm font-medium text-center rounded-lg "
                     onClick={() => handleCurrencyToggle(fromCurrency)}
                   >
                     Change Price to {toCurrency}
                   </Button>
-
-                 
-
-                  <div className="ml-7 d-flex align-items-center gap-1 section__description">
-                    Available Tickets {packageObject.totalCount}
-                  </div>
                 </div>
+               
               </div>
               <div className="w-full lg:w-2/5 ">
                 <h5 className="font-bold text-center font-inter">
@@ -254,7 +252,7 @@ const PackageDetails = () => {
               resetForm();
             }}
           >
-            <Form className="border-2 bg-white shadow-lg rounded px-4 md:px-8 pt-6 pb-8 mb-4">
+            <Form className="border-2  bg-lavender shadow-lg rounded px-4 md:px-8 pt-6 pb-8 mb-4">
               <InputTextField
                 label="Full Name"
                 name="full_name"

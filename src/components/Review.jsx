@@ -52,6 +52,7 @@ export default function Review({
   videoFileName,
   price,
   totalCount,
+  region
 }) {
   return (
     <React.Fragment>
@@ -103,6 +104,12 @@ export default function Review({
         <ListItem key={title} xs={12} sm={6} sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Country" />
           <Typography variant="body2">{country}</Typography>
+        </ListItem>
+      </List>
+      <List disablePadding>
+        <ListItem key={title} xs={12} sm={6} sx={{ py: 1, px: 0 }}>
+          <ListItemText primary="Region: " />
+          <Typography variant="body2">{region}</Typography>
         </ListItem>
       </List>
       <List disablePadding>

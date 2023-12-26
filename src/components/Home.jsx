@@ -2,6 +2,8 @@ import React, { useEffect ,useState, Suspense } from "react";
 import ScrollToTop from "./ScrollToTop";
 import SearchBar from "./SearchBar";
 import CountrySelectionModal from './Modal'; 
+import { Box, Button, Typography } from "@mui/material";
+import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
 
 const Hero = React.lazy(() => import("./Hero"));
 const PackagesCard = React.lazy(() => import("./PackagesCard"));
@@ -15,6 +17,7 @@ const Hotels = React.lazy(() => import("./HotelsCard"));
 export default function App() {
 	const [searchTerm, setSearchTerm] = useState("");
     const [showModal, setShowModal] = useState(false);
+	const [region,setRegion] = useState(null)
 
 	useEffect(() => {
         // Check if the country is already selected and stored in localStorage
@@ -22,10 +25,15 @@ export default function App() {
         if (!country) {
             setShowModal(true); 
         }
+		else{
+			setRegion(country)
+		}
+		
     }, [showModal]);
 
     const handleCountrySelect = (country) => {
 			localStorage.setItem("country", country);
+			setRegion(country)
         	setShowModal(false); 
     };
 	return (
@@ -33,9 +41,30 @@ export default function App() {
 			<CountrySelectionModal open={showModal} onSelect={handleCountrySelect} />
 			
 			<Suspense fallback={<div>Loading...</div>}>
+			<Box 
+				sx={{
+					display:'flex',
+					flexDirection : 'row',
+					justifyContent:'flex-end'
+				}}
+			>
+				<Typography variant="body1" sx={{mt:1,textAlign:'end',p:1}}><PlaceOutlinedIcon /> Region : {region}</Typography>
+				<Button 
+					sx={{
+						mt:1,
+						textDecoration:'underline'
+					}}
+					onClick= {	
+						() => setShowModal(true) 
+					}
+				>
+					Change Region
+				</Button>
+			</Box>
 				<Hero />
 				{!showModal &&
 					(<>
+						
 						<SearchBar setSearchTerm={setSearchTerm} />
 						<Tours searchTerm={searchTerm} />
 						<Tickets searchTerm={searchTerm} />

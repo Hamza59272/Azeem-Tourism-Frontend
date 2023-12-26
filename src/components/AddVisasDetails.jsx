@@ -77,7 +77,7 @@ export default function Checkout() {
       region: region,
       active: true,
     };
-    const URL = "http://localhost:8080/api/visas/create";
+    const URL = "https://backend.azeemtourism.com/api/visas/create";
     axios
       .post(URL, data)
       .then((response) => {

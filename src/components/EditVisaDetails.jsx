@@ -85,7 +85,7 @@ export default function Checkout() {
         price: price,
         active: true,
       };
-    const URL = `http://localhost:8080/api/visas/update/${packageData._id}`;
+    const URL = `https://backend.azeemtourism.com/api/visas/update/${packageData._id}`;
     axios
       .post(URL, data)
       .then((response) => {

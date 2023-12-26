@@ -5,8 +5,12 @@ import Stack from "@mui/material/Stack";
 import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
 import CollectionsIcon from "@mui/icons-material/Collections";
+import InputLabel from '@material-ui/core/InputLabel';
 import Button from "@mui/material/Button";
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
+
 export default function AddressForm({
   title,
   setZip,
@@ -34,7 +38,14 @@ export default function AddressForm({
   setTotalCount,
   price,
   setPrice,
+  setRegion,
+  region
 }) {
+
+  const handleRegionChange = (event) => {
+    setRegion(event.target.value);
+  };
+
   const handleUploadImage = () => {
     let widget = window.cloudinary.createUploadWidget(
       {
@@ -252,7 +263,7 @@ export default function AddressForm({
             id="state"
             multiline
             name="state"
-            label="State/Province/Region"
+            label="State/Province"
             fullWidth
             variant="standard"
             value={state}
@@ -292,6 +303,20 @@ export default function AddressForm({
               setCountry(e.target.value);
             }}
           />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+        <InputLabel id="region-select-label">Region</InputLabel>
+        <Select
+            value={region}
+            onChange={handleRegionChange}
+            displayEmpty
+            fullWidth
+            sx={{height:30}}
+          >
+            <MenuItem  sx={{height:30}} value="Both"><em>None</em></MenuItem>
+            <MenuItem  sx={{height:30}} value="Pakistan">Pakistan</MenuItem>
+            <MenuItem  sx={{height:30}} value="UAE">UAE</MenuItem>
+          </Select>
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField

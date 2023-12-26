@@ -13,7 +13,7 @@ export default function PackagesCard({ searchTerm }) {
 	const navigate = useNavigate();
 	useEffect(() => {
 		const region = localStorage.getItem("country")
-		const URL = "http://localhost:8080/api/hotels/get";
+		const URL = "https://backend.azeemtourism.com/api/hotels/get";
 		axios
 			.get(URL)
 			.then((response) => {
@@ -68,7 +68,7 @@ export default function PackagesCard({ searchTerm }) {
 					return (
 						<Card
 							key={_id}
-							className="transform hover:scale-110 shadow-lg rounded-lg lg:w-96 border-2  mx-auto  h-auto my-3 lg:my-5"
+							className="transform hover:scale-102 shadow-lg rounded-lg lg:w-96 border-2  mx-auto  h-auto my-3 lg:my-5"
 							imgSrc={destination.images[0].image}
 						>
 							<h5>{destination.name}</h5>
@@ -89,7 +89,7 @@ export default function PackagesCard({ searchTerm }) {
 							<Button
 								color="gray"
 								onClick={() => navigate(`/hotels/${destination.name}`)}
-								className="shadow-sm  bg-zinc-100  text-zinc-800 hover:bg-zinc-800 hover:text-white transition-colors duration-100  text-sm font-medium text-center rounded-lg bg-primary-700 w-full"
+								className="shadow-sm bg-zinc-100 text-zinc-800 hover:text-white bg-zinc-800 transition-colors duration-100 text-sm font-medium text-center rounded-lg bg-primary-700 w-full border-2 border-black"
 							>
                 Book Now
 							</Button>

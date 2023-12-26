@@ -24,7 +24,7 @@ const HotelDetails = () => {
   const [CurrentCurrency, setCurrentCurrency ] = useState()
 
   useEffect(() => {
-    const URL = "http://localhost:8080/api/hotels/get";
+    const URL = "https://backend.azeemtourism.com/api/hotels/get";
     axios
       .get(URL)
       .then((response) => {
@@ -100,7 +100,7 @@ const HotelDetails = () => {
       pickup_location,
     } = values;
     axios
-      .post(`http://localhost:8080/api/payments/intent`, {
+      .post(`https://backend.azeemtourism.com/api/payments/intent`, {
         packageCharges: packageObject.price * total_persons,
       })
       .then((response) => {
@@ -176,14 +176,14 @@ const HotelDetails = () => {
                   //thumbnails={true}
                 />
 
-                <div className="pt-5">
+                <div className="pt-5 ml-5">
                   <h5 className="font-inter font-semibold text-md text-left">
                     How the Hotel will look like?
                   </h5>
                   <p className="font-inter">{packageObject.description}</p>
                 </div>
-                <div className="flex ">
-                  <p className="flex text-xl font-inter font-semibold mt-1 gap-x-2">
+                <div className="flex " style={{display:'flex',flexDirection:'row',justifyContent:'center',marginTop:'3%'}}>
+                <p className="flex text-xl font-inter font-semibold mt-1 gap-x-2">
                     <IoPricetagsOutline className="mt-1" />
                     Price: {fromCurrency === "USD" ? "$" : "AED: "}
                   </p>
@@ -193,7 +193,7 @@ const HotelDetails = () => {
                       : Math.round ((exchangeRate / CurrentCurrency) * packageObject.price,9)}
                   </span>
                   <Button
-                    className="ml-5 shadow-sm bg-black text-white hover:bg-white hover:text-black transition-colors duration-100 text-xs md:text-sm font-medium text-center rounded-lg md:p-3"
+                    className="ml-5 shadow-sm bg-black text-white hover:bg-white hover:text-black transition-colors duration-100 text-xs md:text-sm font-medium text-center rounded-lg "
                     onClick={() => handleCurrencyToggle(fromCurrency)}
                   >
                     Change Price to {toCurrency}
@@ -251,7 +251,7 @@ const HotelDetails = () => {
               resetForm();
             }}
           >
-            <Form className="border-2 bg-white shadow-lg rounded px-4 md:px-8 pt-6 pb-8 mb-4">
+            <Form className="border-2 bg-rust shadow-lg rounded px-4 md:px-8 pt-6 pb-8 mb-4">
               <InputTextField
                 label="Full Name"
                 name="full_name"

@@ -15,7 +15,7 @@ export default function Tours({ searchTerm }) {
 	const navigate = useNavigate();
 	useEffect(() => {
 		const region = localStorage.getItem("country")
-		const URL = "http://localhost:8080/api/visas/get";
+		const URL = "https://backend.azeemtourism.com/api/visas/get";
 		axios
 			.get(URL)
 			.then((response) => {
@@ -69,7 +69,7 @@ export default function Tours({ searchTerm }) {
 			{data.map((destination, _id) => (
 			  <div
 				key={_id}
-				className="transform hover:scale-105 overflow-hidden shadow-lg rounded-lg bg-white lg:w-96 h-auto border-2 my-3 lg:my-5"
+				className="transform hover:scale-95 overflow-hidden shadow-lg rounded-lg bg-white lg:w-96 h-auto border-2 my-3 lg:my-5"
 			  >
 				<img
 				  src={destination.images[0].image}
@@ -80,7 +80,7 @@ export default function Tours({ searchTerm }) {
 					
 				>
 				  <h5 className="text-lg font-semibold mb-2">{destination.title}</h5>
-				  <p className="text-gray-700 text-sm mb-4 h-16 overflow-auto">
+				  <p className="text-gray-700 text-sm mb-1 h-16 overflow-auto">
 					{destination.description}
 				  </p>
 				  <div className=" flex justify-between flex-row">
@@ -92,9 +92,9 @@ export default function Tours({ searchTerm }) {
                     </div>
                     <p className="font-bold text-md">{"$" + destination.price}</p>
                 </div>
-                <div className=" flex justify-center flex-row">
-                    <p className="font-bold text-md">Dealer:{" "} </p>
-                    <p className="text-md">{" " + destination.firstName + " " + destination.lastName}</p>
+                <div className="my-3">
+                    <span className="font-bold text-md">Dealer:{" "} </span>
+                    <span className="text-md">{destination.firstName + " " + destination.lastName}</span>
                 </div>
 				  <Button
 					color="dark"

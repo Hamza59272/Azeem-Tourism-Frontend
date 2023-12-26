@@ -30,7 +30,7 @@ export default function AdminHotelCard() {
   const [reload, setReload] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
-    const URL = "http://localhost:8080/api/hotels/get";
+    const URL = "https://backend.azeemtourism.com/api/hotels/get";
     axios
       .get(URL)
       .then((response) => {
@@ -45,7 +45,7 @@ export default function AdminHotelCard() {
       });
   }, [reload]);
   const updateVisibility = async (id) => {
-    const URL = `http://localhost:8080/api/hotels/update/${id}`;
+    const URL = `https://backend.azeemtourism.com/api/hotels/update/${id}`;
     await axios
       .post(URL, {
         active: false,
@@ -58,7 +58,7 @@ export default function AdminHotelCard() {
       });
   };
   const removeTour = async (id) => {
-    const URL = `http://localhost:8080/api/hotels/delete/${id}`;
+    const URL = `https://backend.azeemtourism.com/api/hotels/delete/${id}`;
     await axios
       .delete(URL)
       .then((response) => {

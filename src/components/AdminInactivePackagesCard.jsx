@@ -31,7 +31,7 @@ export default function AdminPackagesCard() {
   const [reload, setReload] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
-    const URL = "http://localhost:8080/api/packages/get";
+    const URL = "https://backend.azeemtourism.com/api/packages/get";
     axios
       .get(URL)
       .then((response) => {
@@ -46,7 +46,7 @@ export default function AdminPackagesCard() {
       });
   }, [reload]);
   const updateVisibility = async (id) => {
-    const URL = `http://localhost:8080/api/packages/update/${id}`;
+    const URL = `https://backend.azeemtourism.com/api/packages/update/${id}`;
     await axios
       .post(URL, {
         active: true,
@@ -59,7 +59,7 @@ export default function AdminPackagesCard() {
       });
   };
   const removePackage = async (id) => {
-    const URL = `http://localhost:8080/api/packages/delete/${id}`;
+    const URL = `https://backend.azeemtourism.com/api/packages/delete/${id}`;
     await axios
       .delete(URL)
       .then((response) => {
@@ -111,6 +111,11 @@ export default function AdminPackagesCard() {
                     <span className="text-md">{destination.totalCount}</span>
                   </div>
                   <p className="font-bold text-md">{"$" + destination.price}</p>
+                </div>
+                <div>
+                    <p className="text-justify w-full h-24 overflow-auto font-normal text-zinc-700 text-sm mt-0">
+                      For Region: {''}{destination.region ?  destination.region : null}
+                    </p>
                 </div>
                 <div className="flex justify-around bg-white text-zinc-800 hover:text-white transition-colors duration-100 text-md font-medium text-center rounded-lg bg-primary-700 w-full">
                   <Tooltip title="Edit">

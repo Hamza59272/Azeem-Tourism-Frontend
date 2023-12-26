@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-key */
 import React, { useState, useEffect } from "react";
-import { Button, Modal } from "flowbite-react";
+import { Button } from "flowbite-react";
 import { useParams } from "react-router-dom";
 import { FloatingWhatsApp } from "react-floating-whatsapp";
 import { IoPricetagsOutline } from "react-icons/io5";
@@ -24,7 +24,7 @@ const PackageDetails = () => {
   const [exchangeRate, setExchangeRate] = useState()
   const [CurrentCurrency, setCurrentCurrency ] = useState()
   useEffect(() => {
-    const URL = "http://localhost:8080/api/tours/get";
+    const URL = "https://backend.azeemtourism.com/api/tours/get";
     axios
       .get(URL)
       .then((response) => {
@@ -54,7 +54,7 @@ const PackageDetails = () => {
   }, []);
 
   useEffect(() => {
-   // window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   }, []);
 
   const handleCurrencyToggle = () => {
@@ -102,7 +102,7 @@ const PackageDetails = () => {
       pickup_location,
     } = values;
     axios
-      .post(`http://localhost:8080/api/payments/intent`, {
+      .post(`https://backend.azeemtourism.com/api/payments/intent`, {
         packageCharges: packageObject.price * total_persons,
       })
       .then((response) => {
@@ -193,28 +193,12 @@ const PackageDetails = () => {
                       ? packageObject.price
                       : Math.round ((exchangeRate / CurrentCurrency) * packageObject.price,9)}
                   </span>
-                  <button
-            style={{
-              marginTop:'0.8%',
-              padding: "1.25%",
-              backgroundColor: 'black',
-              color: 'white',
-              paddingTop: 4,
-              paddingBottom: 4,
-              paddingLeft: 4,
-              paddingRight: 4,
-              marginLeft: 10,
-              border: 1,
-              borderRadius: 8,
-              transition: 'background-color 0.3s, color 0.3s',
-              
-            }}
-  onClick={() => handleCurrencyToggle(fromCurrency)}
-  onMouseOver={(e) => { e.target.style.backgroundColor = '#7ec7b3' ,  e.target.style.color = 'black'} }  // Change background color on hover
-  onMouseOut={(e) => {e.target.style.backgroundColor = 'black' ,  e.target.style.color = 'white'}}  // Change back to original color on hover out
->
-  Change Price to {toCurrency}
-</button>
+                  <Button
+                    className="ml-5 shadow-sm bg-black text-white hover:bg-white hover:text-black transition-colors duration-100 text-xs md:text-sm font-medium text-center rounded-lg "
+                    onClick={() => handleCurrencyToggle(fromCurrency)}
+                  >
+                    Change Price to {toCurrency}
+                  </Button>
 
 
 

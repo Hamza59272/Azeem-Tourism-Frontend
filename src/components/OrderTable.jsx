@@ -283,7 +283,7 @@ export default function EnhancedTable() {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [orderDetails, setOrderdetails] = useState([]);
   useEffect(() => {
-    const URL = "http://localhost:8080/api/orders/get";
+    const URL = "https://backend.azeemtourism.com/api/orders/get";
     axios
       .get(URL)
       .then((response) => {

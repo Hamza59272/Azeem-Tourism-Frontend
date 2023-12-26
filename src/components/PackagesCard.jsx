@@ -13,7 +13,7 @@ export default function PackagesCard({ searchTerm }) {
 	const navigate = useNavigate();
 	useEffect(() => {
 		const region = localStorage.getItem("country")
-		const URL = "http://localhost:8080/api/packages/get";
+		const URL = "https://backend.azeemtourism.com/api/packages/get";
 		axios
 			.get(URL)
 			.then((response) => {

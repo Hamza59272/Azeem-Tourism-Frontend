@@ -7,8 +7,11 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Card } from "flowbite-react";
 const CheckoutSuccess = () => {
+  const [data,setData] = useState(null)
   const navigate = useNavigate();
   const orderDetails = JSON.parse(localStorage.getItem("orderDetails"));
+
+  
   const handleCreate = () => {
     const data = {
       orderType: orderDetails.orderType,
@@ -24,11 +27,38 @@ const CheckoutSuccess = () => {
       stripeSessionId: orderDetails.stripeSessionId,
       payment: orderDetails.totalpersons * orderDetails.packageObject.price,
     };
+    setData(data)
     const URL = "https://backend.azeemtourism.com/api/orders/create";
     axios
       .post(URL, data)
       .then((response) => {
+        const data = {
+          orderNo : response.data._id,
+          orderType: response.data.orderType,
+          objectService: response.data.objectService,
+          fullName: response.data.fullName,
+          tourName: response.data.tourName,
+          tourDate: response.data.tourDate,
+          email: response.data.email,
+          phone: response.data.phone,
+          totalPersons: response.data.totalPersons,
+          pickupTime: response.data.pickupTime,
+          pickupLocation: response.data.pickupLocation,
+          stripeSessionId: response.data.stripeSessionId,
+          payment: response.data.payment 
+        };
+        setData(data)
+        const url = `https://backend.azeemtourism.com/api/orders/mail/${response.data.email}`
+        axios
+        .post(url)
+        .then((response) => {
+            console.log(response.data)
+        })
+        .catch((error) => {});
+
         updateMyPackage();
+        navigate('/invoice' , {state : {data : data}});
+
       })
       .catch((error) => {});
   };
@@ -53,7 +83,8 @@ const CheckoutSuccess = () => {
 
   return (
     <Container>
-      <Card className="transform hover:scale-110 shadow-lg rounded-lg lg:w-96 border-2 font-inter h-auto justify-center">
+      <Card className="transform shadow-lg rounded-lg lg:w-96 border-2 font-inter h-auto justify-center" 
+        style={{boxShadow:46}}>
         <h5 className="text-center font-semibold">Checkout Successful</h5>
         <p className="text-lg text-justify ">
           Thank you for choosing Azeem Tourism! 🌟 Your order might take some
@@ -72,28 +103,31 @@ const CheckoutSuccess = () => {
             <strong>+97152760013</strong>
           </a>
           .
+          
         </p>
+        <p><strong>Please Make Sure to Click on Confirm Order Else We will not receive our order (yet your payment is done)</strong></p>
         <Button
           onClick={() => {
             handleCreate();
-            navigate("/");
           }}
           sx={{
             fontFamily: "Inter",
-            backgroundColor: "#4CAF50",
-            color: "white",
+            backgroundColor: "#7ec7b3",
+            color: "black",
             borderRadius: "lg",
             fontSize: "lg",
             p: 1.2,
             transition: "all 0.3s ease-in-out",
             "&:hover": {
-              backgroundColor: "#388E3C",
+              backgroundColor: "#00A3E0",
               color: "white",
             },
           }}
         >
           Confirm Order
         </Button>
+
+      
       </Card>
     </Container>
   );

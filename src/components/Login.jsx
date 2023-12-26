@@ -68,7 +68,7 @@ export default function SignInSide() {
       /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(pass)
     ) {
       const data = { email, password: pass };
-      const URL = "http://localhost:8080/api/auth/login";
+      const URL = "https://backend.azeemtourism.com/api/auth/login";
       axios
         .post(URL, data)
         .then((response) => {
