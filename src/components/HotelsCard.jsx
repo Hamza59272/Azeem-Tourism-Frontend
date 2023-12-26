@@ -12,19 +12,23 @@ export default function PackagesCard({ searchTerm }) {
 	const [isLoading, setIsLoading] = useState(true);
 	const navigate = useNavigate();
 	useEffect(() => {
+		const region = localStorage.getItem("country")
+		console.log(region)
 		const URL = "http://localhost:8080/api/hotels/get";
 		axios
 			.get(URL)
 			.then((response) => {
 				let filtered = response.data.filter(
-					(packages) => packages.active === true,
+					(packages) => {
+						return packages.active === true && (region !== 'Both' ? packages.region === region : true);
+					}
 				);
 				if (searchTerm) {
 					filtered = filtered.filter((item) =>
 						item.title.toLowerCase().includes(searchTerm.toLowerCase()),
 					);
 				}
-
+	
 				setData(filtered);
 				setIsLoading(false);
 			})

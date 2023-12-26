@@ -9,7 +9,8 @@ const Services = React.lazy(() => import("./Services"));
 const Tickets = React.lazy(() => import("./TicketsCards"));
 const Tours = React.lazy(() => import("./ToursCards"));
 const Visas = React.lazy(() => import("./VisasCard"));
-import bgImage from "../assets/fullbg.jpg";
+const Hotels = React.lazy(() => import("./HotelsCard"));
+
 
 export default function App() {
 	const [searchTerm, setSearchTerm] = useState("");
@@ -36,6 +37,8 @@ export default function App() {
 				<Tours searchTerm={searchTerm} />
 				<Tickets searchTerm={searchTerm} />
 				<PackagesCard searchTerm={searchTerm} />
+				<Visas searchTerm={searchTerm} />
+				<Hotels searchTerm={searchTerm} />
 				<Services searchTerm={searchTerm} />
 			</Suspense>
 			<ScrollToTop />

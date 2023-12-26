@@ -7,7 +7,6 @@ import Lottie from 'react-lottie-player'
 import { Button, Card } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
 import { Spinner } from "flowbite-react";
-import bgImage from "../assets/fullbg.jpg";
 
 export default function Tours({ searchTerm }) {
 	const [data, setData] = useState([]);
@@ -15,19 +14,22 @@ export default function Tours({ searchTerm }) {
 	const [isLoading, setIsLoading] = useState(true);
 	const navigate = useNavigate();
 	useEffect(() => {
+		const region = localStorage.getItem("country")
 		const URL = "http://localhost:8080/api/visas/get";
 		axios
 			.get(URL)
 			.then((response) => {
 				let filtered = response.data.filter(
-					(packages) => packages.active === true,
+					(packages) => {
+						return packages.active === true && (region !== 'Both' ? packages.region === region : true);
+					}
 				);
 				if (searchTerm) {
 					filtered = filtered.filter((item) =>
 						item.title.toLowerCase().includes(searchTerm.toLowerCase()),
 					);
 				}
-
+	
 				setData(filtered);
 				setIsLoading(false);
 			})
@@ -36,6 +38,7 @@ export default function Tours({ searchTerm }) {
 				console.log(error.message);
 			});
 	}, [reload, searchTerm]);
+	
 	if (isLoading) {
 		return (
 			<div className="flex justify-center items-center h-screen">
