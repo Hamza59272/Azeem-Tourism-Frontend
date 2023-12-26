@@ -37,8 +37,12 @@ export default function Tours({ searchTerm }) {
 				setIsLoading(true);
 				console.log(error.message);
 			});
-	}, [reload, searchTerm]);
+	}, [reload, searchTerm,localStorage]);
 	
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	  }, []);
+	  
 	if (isLoading) {
 		return (
 			<div className="flex justify-center items-center h-screen">

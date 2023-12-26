@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef ,useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import { Alert, Snackbar } from "@mui/material";
 import { Button } from "flowbite-react";
@@ -11,6 +11,11 @@ const Contact = () => {
 	const [open, setOpen] = React.useState(false);
 	const [message, setMessage] = React.useState("");
 	const form = useRef();
+
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	  }, []);
 	const sendEmail = (e) => {
 		e.preventDefault();
 

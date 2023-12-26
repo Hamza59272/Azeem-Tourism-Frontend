@@ -31,15 +31,20 @@ export default function App() {
 	return (
 		<div>
 			<CountrySelectionModal open={showModal} onSelect={handleCountrySelect} />
+			
 			<Suspense fallback={<div>Loading...</div>}>
 				<Hero />
-				<SearchBar setSearchTerm={setSearchTerm} />
-				<Tours searchTerm={searchTerm} />
-				<Tickets searchTerm={searchTerm} />
-				<PackagesCard searchTerm={searchTerm} />
-				<Visas searchTerm={searchTerm} />
-				<Hotels searchTerm={searchTerm} />
-				<Services searchTerm={searchTerm} />
+				{!showModal &&
+					(<>
+						<SearchBar setSearchTerm={setSearchTerm} />
+						<Tours searchTerm={searchTerm} />
+						<Tickets searchTerm={searchTerm} />
+						<PackagesCard searchTerm={searchTerm} />
+						<Visas searchTerm={searchTerm} />
+						<Hotels searchTerm={searchTerm} />
+						<Services searchTerm={searchTerm} />
+					</>)
+				}
 			</Suspense>
 			<ScrollToTop />
 		</div>

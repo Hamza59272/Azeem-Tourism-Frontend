@@ -1,15 +1,20 @@
-import React from "react";
+import React  from "react";
 import { useInView } from "react-intersection-observer";
 import atmCard from "../assets/atmCard.png";
 import beach from "../assets/beach.png";
 import travelGuide from "../assets/travelGuide.png";
 import flight from "../assets/flight.png";
 import { Card } from "flowbite-react";
+import { useEffect } from "react";
 
 const ServiceCard = ({ service }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
   });
+  
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	  }, []);
 
   return (
     <div

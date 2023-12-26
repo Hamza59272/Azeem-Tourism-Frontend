@@ -13,7 +13,6 @@ export default function PackagesCard({ searchTerm }) {
 	const navigate = useNavigate();
 	useEffect(() => {
 		const region = localStorage.getItem("country")
-		console.log(region)
 		const URL = "http://localhost:8080/api/hotels/get";
 		axios
 			.get(URL)
@@ -36,8 +35,13 @@ export default function PackagesCard({ searchTerm }) {
 				setIsLoading(true);
 				console.log(error.message);
 			});
-	}, [reload, searchTerm]);
+	}, [reload, searchTerm,localStorage]);
 
+	
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	  }, []);
+	  
 	if (isLoading) {
 		return (
 			<div className="flex justify-center items-center h-screen">

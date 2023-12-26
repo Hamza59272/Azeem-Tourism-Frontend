@@ -13,13 +13,16 @@ const Tickets = ({ searchTerm }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const URL = "https://backend.azeemtourism.com/api/tickets/get";
+    const region = localStorage.getItem("country")
+    const URL = "http://localhost:8080/api/tickets/get";
     axios
       .get(URL)
       .then((response) => {
         let filtered = response.data.filter(
-          (packages) => packages.active === true,
-        );
+					(packages) => {
+						return packages.active === true && (region !== 'Both' ? packages.region === region : true);
+					}
+				);
         if (searchTerm) {
           filtered = filtered.filter((item) =>
             item.title.toLowerCase().includes(searchTerm.toLowerCase()),
@@ -32,8 +35,13 @@ const Tickets = ({ searchTerm }) => {
         setIsLoading(true);
         console.log(error.message);
       });
-  }, [reload, searchTerm]);
+  }, [reload, searchTerm,localStorage]);
 
+  
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	  }, []);
+    
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen">

@@ -25,7 +25,7 @@ const PackageDetails = () => {
   const [CurrentCurrency, setCurrentCurrency ] = useState()
 
   useEffect(() => {
-    const URL = "https://backend.azeemtourism.com/api/tickets/get";
+    const URL = "http://localhost:8080/api/tickets/get";
     axios
       .get(URL)
       .then((response) => {
@@ -101,7 +101,7 @@ const PackageDetails = () => {
       pickup_location,
     } = values;
     axios
-      .post(`https://backend.azeemtourism.com/api/payments/intent`, {
+      .post(`http://localhost:8080/api/payments/intent`, {
         packageCharges: packageObject.price * total_persons,
       })
       .then((response) => {

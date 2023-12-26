@@ -102,7 +102,7 @@ const PackageDetails = () => {
       pickup_location,
     } = values;
     axios
-      .post(`https://backend.azeemtourism.com/api/payments/intent`, {
+      .post(`http://localhost:8080/api/payments/intent`, {
         packageCharges: packageObject.price * total_persons,
       })
       .then((response) => {

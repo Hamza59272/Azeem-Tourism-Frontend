@@ -80,7 +80,7 @@ export default function Checkout() {
       price: price,
       active: true,
     };
-    const URL = "https://backend.azeemtourism.com/api/tickets/create";
+    const URL = "http://localhost:8080/api/tickets/create";
     axios
       .post(URL, data)
       .then((response) => {

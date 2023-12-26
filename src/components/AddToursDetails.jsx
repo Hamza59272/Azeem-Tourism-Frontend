@@ -84,7 +84,7 @@ export default function Checkout() {
       active: true,
       milestone: [{}],
     };
-    const URL = "https://backend.azeemtourism.com/api/tours/create";
+    const URL = "http://localhost:8080/api/tours/create";
     axios
       .post(URL, data)
       .then((response) => {

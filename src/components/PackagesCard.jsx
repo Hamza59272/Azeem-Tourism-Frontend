@@ -12,12 +12,15 @@ export default function PackagesCard({ searchTerm }) {
 	const [isLoading, setIsLoading] = useState(true);
 	const navigate = useNavigate();
 	useEffect(() => {
-		const URL = "https://backend.azeemtourism.com/api/packages/get";
+		const region = localStorage.getItem("country")
+		const URL = "http://localhost:8080/api/packages/get";
 		axios
 			.get(URL)
 			.then((response) => {
 				let filtered = response.data.filter(
-					(packages) => packages.active === true,
+					(packages) => {
+						return packages.active === true && (region !== 'Both' ? packages.region === region : true);
+					}
 				);
 				if (searchTerm) {
 					filtered = filtered.filter((item) =>
@@ -32,8 +35,13 @@ export default function PackagesCard({ searchTerm }) {
 				setIsLoading(true);
 				console.log(error.message);
 			});
-	}, [reload, searchTerm]);
+	}, [reload, searchTerm,localStorage]);
 
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	  }, []);
+
+	  
 	if (isLoading) {
 		return (
 			<div className="flex justify-center items-center h-screen">

@@ -18,7 +18,7 @@ export default function AdminPackagesCard() {
   const [reload, setReload] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
-    const URL = "https://backend.azeemtourism.com/api/tickets/get";
+    const URL = "http://localhost:8080/api/tickets/get";
     axios
       .get(URL)
       .then((response) => {
@@ -33,7 +33,7 @@ export default function AdminPackagesCard() {
       });
   }, [reload]);
   const updateVisibility = async (id) => {
-    const URL = `https://backend.azeemtourism.com/api/tickets/update/${id}`;
+    const URL = `http://localhost:8080/api/tickets/update/${id}`;
     await axios
       .post(URL, {
         active: true,
@@ -46,7 +46,7 @@ export default function AdminPackagesCard() {
       });
   };
   const removeTickets = async (id) => {
-    const URL = `https://backend.azeemtourism.com/api/tickets/delete/${id}`;
+    const URL = `http://localhost:8080/api/tickets/delete/${id}`;
     await axios
       .delete(URL)
       .then((response) => {
