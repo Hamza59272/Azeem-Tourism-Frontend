@@ -36,7 +36,7 @@ Follow these steps to set up the Smart Travel Website on your local machine:
 1. Clone the repository from GitHub:
 
    ```shell
-   git clone https://github.com/AwaisAE7/Smart-Travel.git
+   git clone https://github.com/Hamza59272/Azeem-Tourism-Frontend.git
    ```
 
 2. Navigate to the project directory:
