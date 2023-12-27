@@ -16,7 +16,7 @@ export default function Tours({ searchTerm }) {
 	const navigate = useNavigate();
 	useEffect(() => {
 		const region = localStorage.getItem("country")
-		const URL = "https://backend.azeemtourism.com/api/tours/get";
+		const URL = "http://localhost:8080/api/tours/get";
 		axios
 			.get(URL)
 			.then((response) => {

@@ -14,7 +14,7 @@ const Tickets = ({ searchTerm }) => {
 
   useEffect(() => {
     const region = localStorage.getItem("country")
-    const URL = "https://backend.azeemtourism.com/api/tickets/get";
+    const URL = "http://localhost:8080/api/tickets/get";
     axios
       .get(URL)
       .then((response) => {

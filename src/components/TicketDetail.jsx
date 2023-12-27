@@ -25,7 +25,7 @@ const PackageDetails = () => {
   const [CurrentCurrency, setCurrentCurrency ] = useState()
 
   useEffect(() => {
-    const URL = "https://backend.azeemtourism.com/api/tickets/get";
+    const URL = "http://localhost:8080/api/tickets/get";
     axios
       .get(URL)
       .then((response) => {
@@ -39,11 +39,12 @@ const PackageDetails = () => {
       .catch((error) => {
         console.log(error.message);
       });
+      const countary = localStorage.getItem('country')
 
       axios.get(`http://api.exchangeratesapi.io/v1/latest?access_key=${import.meta.env.VITE_REACT_APP_EXCHANGE_RATE_API_KEY}`)
       .then(response => {
         const baseCurrency = "USD"; 
-        const targetCurrency = "AED";
+        const targetCurrency = countary == 'Pakistan' ? "PKR" : "AED";
         setCurrencyOptions([baseCurrency, ...Object.keys(response.data.rates)]);
         setFromCurrency(baseCurrency);
         setToCurrency(targetCurrency);
@@ -101,7 +102,7 @@ const PackageDetails = () => {
       pickup_location,
     } = values;
     axios
-      .post(`https://backend.azeemtourism.com/api/payments/intent`, {
+      .post(`http://localhost:8080/api/payments/intent`, {
         packageCharges: packageObject.price * total_persons,
       })
       .then((response) => {

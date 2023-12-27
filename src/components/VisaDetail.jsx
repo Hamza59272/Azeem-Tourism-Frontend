@@ -24,7 +24,7 @@ const PackageDetails = () => {
   const [exchangeRate, setExchangeRate] = useState()
   const [CurrentCurrency, setCurrentCurrency ] = useState()
   useEffect(() => {
-    const URL = "https://backend.azeemtourism.com/api/visas/get";
+    const URL = "http://localhost:8080/api/visas/get";
     axios
       .get(URL)
       .then((response) => {
@@ -39,11 +39,12 @@ const PackageDetails = () => {
         console.log(error.message);
       });
 
+      const countary = localStorage.getItem('country')
 
       axios.get(`http://api.exchangeratesapi.io/v1/latest?access_key=${import.meta.env.VITE_REACT_APP_EXCHANGE_RATE_API_KEY}`)
       .then(response => {
         const baseCurrency = "USD"; 
-        const targetCurrency = "AED";
+        const targetCurrency = countary == 'Pakistan' ? "PKR" : "AED";
         setCurrencyOptions([baseCurrency, ...Object.keys(response.data.rates)]);
         setFromCurrency(baseCurrency);
         setToCurrency(targetCurrency);
@@ -102,7 +103,7 @@ const PackageDetails = () => {
       pickup_location,
     } = values;
     axios
-      .post(`https://backend.azeemtourism.com/api/payments/intent`, {
+      .post(`http://localhost:8080/api/payments/intent`, {
         packageCharges: packageObject.price * total_persons,
       })
       .then((response) => {
@@ -196,10 +197,10 @@ const PackageDetails = () => {
                         <span className="text-md"> {packageObject.firstName + " " + packageObject.lastName}
                         </span>
                     </div>
-                <div className="flex " style={{display:'flex',flexDirection:'row',justifyContent:'center',marginTop:'3%'}}>
-                  <p className="flex text-xl font-inter font-semibold mt-3 gap-x-2">
+                <div className="flex " style={{display:'flex',flexDirection:'row',justifyContent:'center',marginTop:'3%' , marginBottom:'4%'}}>
+                  <p className="flex text-xl font-inter font-semibold mt-3 gap-x-2 mr-1">
                     <IoPricetagsOutline className="mt-1" />
-                    Price: {fromCurrency === "USD" ? "$" : "AED: "}
+                    Price: {fromCurrency === "USD" ? "$" : fromCurrency === "PKR" ? `Rs` : 'AED ' } 
                   </p>
                   <span className="font-inter font-bold text-xl mt-3">
                     {fromCurrency === "USD"

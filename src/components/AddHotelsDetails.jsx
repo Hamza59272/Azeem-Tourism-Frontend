@@ -21,6 +21,8 @@ export default function Checkout() {
   const [videoFileName, setVideoFileName] = useState([]);
   const [videoFileUrl, setVideoFileUrl] = useState([]);
   const [title, setTitle] = useState("");
+  const [isDiscounted,setisDiscounted] = useState(false);
+  const [discount,setDiscount]= useState(0);
   const [desc, setDesc] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -68,9 +70,11 @@ export default function Checkout() {
         images: imagesList,
         price: price,  
         region: region,
+        isDiscounted:isDiscounted,
+        Discount: discount,
         active: true,
     };
-    const URL = "https://backend.azeemtourism.com/api/hotels/create";
+    const URL = "http://localhost:8080/api/hotels/create";
     axios
       .post(URL, data)
       .then((response) => {
@@ -117,6 +121,10 @@ export default function Checkout() {
             setPrice={setPrice}
             setRegion={setRegion}
             region = {region}
+            isDiscounted ={isDiscounted}
+            discount={discount}
+            setisDiscounted={setisDiscounted}
+            setDiscount={setDiscount}
           />
         );
       case 1:
@@ -129,6 +137,7 @@ export default function Checkout() {
             imageFileUrl={imageFileUrl}
             price={price}
             region = {region}
+            discount = {discount}
           />
         );
       default:
