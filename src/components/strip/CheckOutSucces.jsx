@@ -17,7 +17,7 @@ const CheckoutSuccess = () => {
       orderType: orderDetails.orderType,
       objectService: orderDetails.packageObject._id,
       fullName: orderDetails.fullname,
-      tourName: orderDetails.packageObject.title,
+      tourName: orderDetails.orderType == 'hotel' ? orderDetails.packageObject.name :  orderDetails.packageObject.title,
       tourDate: orderDetails.dateoftour,
       email: orderDetails.email,
       phone: orderDetails.phone,
@@ -25,10 +25,10 @@ const CheckoutSuccess = () => {
       pickupTime: orderDetails.pickuptime,
       pickupLocation: orderDetails.pickuplocation,
       stripeSessionId: orderDetails.stripeSessionId,
-      payment: orderDetails.totalpersons * orderDetails.packageObject.price,
+      payment: orderDetails.totalprice,
     };
     setData(data)
-    const URL = "https://backend.azeemtourism.com/api/orders/create";
+    const URL = "http://localhost:8080/api/orders/create";
     axios
       .post(URL, data)
       .then((response) => {
@@ -48,19 +48,19 @@ const CheckoutSuccess = () => {
           payment: response.data.payment 
         };
         setData(data)
-        const url = `https://backend.azeemtourism.com/api/orders/mail/${response.data.email}`
+        const url = `http://localhost:8080/api/orders/mail/${response.data.email}`
         axios
         .post(url)
         .then((response) => {
             console.log(response.data)
         })
-        .catch((error) => {});
+        .catch((error) => {console.error(error)});
 
         updateMyPackage();
         navigate('/invoice' , {state : {data : data}});
 
       })
-      .catch((error) => {});
+      .catch((error) => {console.error(error)});
   };
   const updateMyPackage = () => {
     const data = {
@@ -69,12 +69,19 @@ const CheckoutSuccess = () => {
     };
     let URL = "";
     if (orderDetails.orderType === "package") {
-      URL = `https://backend.azeemtourism.com/api/packages/update/${orderDetails.packageObject._id}`;
+      URL = `http://localhost:8080/api/packages/update/${orderDetails.packageObject._id}`;
     } else if (orderDetails.orderType === "ticket") {
-      URL = `https://backend.azeemtourism.com/api/tickets/update/${orderDetails.packageObject._id}`;
+      URL = `http://localhost:8080/api/tickets/update/${orderDetails.packageObject._id}`;
     } else if (orderDetails.orderType === "tour") {
-      URL = `https://backend.azeemtourism.com/api/tours/update/${orderDetails.packageObject._id}`;
+      URL = `http://localhost:8080/api/tours/update/${orderDetails.packageObject._id}`;
     }
+    else if (orderDetails.orderType === "hotel") {
+      URL = `http://localhost:8080/api/hotels/update/${orderDetails.packageObject._id}`;
+    }
+    else if (orderDetails.orderType === "visa") {
+      URL = `http://localhost:8080/api/visas/update/${orderDetails.packageObject._id}`;
+    }
+    
     axios
       .post(URL, data)
       .then((response) => {})

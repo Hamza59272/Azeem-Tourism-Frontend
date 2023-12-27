@@ -10,7 +10,7 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import AzeemTourism from "../assets/logo.png";
+import AzeemTourism from "../assets/navlogo.png";
 
 export default function Navbar() {
   const location = useLocation();
@@ -139,8 +139,8 @@ export default function Navbar() {
               <img
                 src={AzeemTourism}
                 alt="Azeem Toursim logo"
-                width={64}
-                height={64}
+                width={35}
+                height={35}
               />
               <p className="lg:text-xl font-bold font-inter text-white text-center pt-0">
                 Azeem Tourism

@@ -70,14 +70,23 @@ const Tickets = ({ searchTerm }) => {
           
             <div
             key={_id}
-              className="bg-white transform hover:scale-90 overflow-hidden shadow-lg rounded-lg lg:w-96  h-auto mx-auto my-3 lg:my-5"
+              className="bg-white transform hover:scale-90 overflow-hidden shadow-lg rounded-lg lg:w-96  h-auto mx-auto my-3 lg:my-5 relative"
               
             >
               <img
 				        src={destination.images[0].image}
+
 				        alt={destination.title}
 				    className="w-full h-60 object-cover rounded-t-lg"
 				/>
+        {
+								destination?.isDiscounted && (
+									<div className="absolute top-0 right-0 bg-red-500 text-white py-1 px-3 rounded-tl-lg">
+									
+										{destination.Discount}% OFF
+									</div>
+								)
+								}
         <div className="p-4">
         <h5 className="text-lg font-semibold mb-2">{destination.title}</h5>
               <p className="text-gray-700 text-sm mb-4 h-16 overflow-auto">
@@ -86,9 +95,21 @@ const Tickets = ({ searchTerm }) => {
 
               <div className="flex justify-between items-center mb-2">
                
-                <p className="font-bold text-xl text-primary-700">
-                  {"$" + destination.price}
-                </p>
+              <div className="flex items-center">
+                  {destination.isDiscounted && (
+                    <p className="text-gray-500 line-through mr-2">
+                      {"$" + destination.price}
+                    </p>
+                  )}
+                  <p className="font-bold text-2xl mt-1 mr-auto">
+                    {"$" +
+                      (
+                        destination?.isDiscounted
+                          ? (destination.price * (100 - destination?.Discount)) / 100
+                          : destination.price
+                      ).toFixed(2)}
+                  </p>
+                </div>
                 <Rating />
               </div>
               <span className="font-semibold">

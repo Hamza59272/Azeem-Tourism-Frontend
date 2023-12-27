@@ -68,21 +68,38 @@ export default function PackagesCard({ searchTerm }) {
 					return (
 						<Card
 							key={_id}
-							className="transform hover:scale-110 shadow-lg rounded-lg lg:w-96 border-2  mx-auto  h-auto my-3 lg:my-5"
+							className=" relative transform hover:scale-105 shadow-lg rounded-lg lg:w-96 border-2  mx-auto  h-auto my-3 lg:my-5"
 							imgSrc={destination.images[0].image}
 						>
+							{
+								destination?.isDiscounted && (
+									<div className="absolute top-0 right-0 bg-red-500 text-white py-1 px-3 rounded-tl-lg">
+									
+										{destination.Discount}% OFF
+									</div>
+								)
+								}
 							<h5>{destination.title}</h5>
 
 							<p className="text-left font-normal text-zinc-700 text-clip text-sm  overflow-auto h-20">
 								{destination.description}
 							</p>
 							<div className="info flex justify-between ">
-								<div className="flex mt-2">
-								</div>
-								<p className="font-bold text-2xl mt-1 mr-auto">
-									{"$" + destination.price}
-								</p>
-
+							<div className="flex items-center">
+                  {destination.isDiscounted && (
+                    <p className="text-gray-500 line-through mr-2">
+                      {"$" + destination.price}
+                    </p>
+                  )}
+                  <p className="font-bold text-2xl mt-1 mr-auto">
+                    {"$" +
+                      (destination.isDiscounted
+                        ? destination.price -
+                          (destination.price * destination.Discount) / 100
+                        : destination.price)}
+                  </p>
+                </div>
+								
 								<Rating />
 							</div>
 

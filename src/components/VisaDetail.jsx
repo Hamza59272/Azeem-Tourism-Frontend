@@ -22,7 +22,12 @@ const PackageDetails = () => {
   const [fromCurrency, setFromCurrency] = useState()
   const [toCurrency, setToCurrency] = useState()
   const [exchangeRate, setExchangeRate] = useState()
-  const [CurrentCurrency, setCurrentCurrency ] = useState()
+  const [currentCurrency, setCurrentCurrency ] = useState()
+  const [displayedPrice, setDisplayedPrice] = useState();
+ 
+  
+
+
   useEffect(() => {
     const URL = "http://localhost:8080/api/visas/get";
     axios
@@ -34,6 +39,7 @@ const PackageDetails = () => {
         setPackagesData(filtered);
         setPackageObject(filtered.find((packages) => packages._id === slug));
         filtered.find((packages) => packages._id === slug);
+        
       })
       .catch((error) => {
         console.log(error.message);
@@ -52,11 +58,33 @@ const PackageDetails = () => {
         setExchangeRate(response.data.rates[targetCurrency])
       })
 
-  }, []);
+  }, [slug]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  useEffect(() => {
+    if (packageObject) {
+      const calculatedPrice =
+        packageObject.isDiscounted && packageObject.Discount
+          ? packageObject.price -
+            (packageObject.price * packageObject.Discount) / 100
+          : packageObject.price;
+
+      const formattedPrice =
+        fromCurrency === "USD"
+          ? `$${calculatedPrice.toFixed(2)}`
+          : fromCurrency === "PKR"
+          ? `Rs ${Math.round(
+              (exchangeRate / currentCurrency) * calculatedPrice
+            )}`
+          : `AED ${Math.round(
+              (exchangeRate / currentCurrency) * calculatedPrice
+            )}`;
+
+      setDisplayedPrice(formattedPrice);
+    }
+  }, [packageObject, fromCurrency, exchangeRate, currentCurrency]);
 
   const handleCurrencyToggle = () => {
     setFromCurrency(toCurrency)
@@ -102,33 +130,43 @@ const PackageDetails = () => {
       user_phone,
       pickup_location,
     } = values;
-    axios
-      .post(`http://localhost:8080/api/payments/intent`, {
-        packageCharges: packageObject.price * total_persons,
-      })
-      .then((response) => {
-        localStorage.setItem(
-          "orderDetails",
-          JSON.stringify({
-            fullname: full_name,
-            email: user_email,
-            phone: user_phone,
-            pickuplocation: pickup_location,
-            totalpersons: total_persons,
-            dateoftour: date_of_tour,
-            pickuptime: pickup_time,
-            totalprice: packageObject.price * total_persons,
-            packageObject: packageObject,
-            stripeSessionId: response.data.sessionID,
-            orderType: "tour",
-          }),
-        );
-        if (response.data) {
-          window.location.href = response.data.sessionURL;
-        }
-      })
-      .catch((err) => console.log(err.message));
-  };
+    
+      let calculatedPrice = packageObject.price * total_persons;
+    
+      if (packageObject.isDiscounted && packageObject.Discount) {
+        calculatedPrice =
+          calculatedPrice -
+          (calculatedPrice * packageObject.Discount) / 100;
+      }
+    
+      axios
+        .post(`http://localhost:8080/api/payments/intent`, {
+          packageCharges: calculatedPrice,
+        })
+        .then((response) => {
+          localStorage.setItem(
+            "orderDetails",
+            JSON.stringify({
+              fullname: full_name,
+              email: user_email,
+              phone: user_phone,
+              pickuplocation: pickup_location,
+              totalpersons: total_persons,
+              dateoftour: date_of_tour,
+              pickuptime: pickup_time,
+              totalprice: calculatedPrice,
+              packageObject: packageObject,
+              stripeSessionId: response.data.sessionID,
+              orderType: "visa",
+            })
+          );
+          if (response.data) {
+            window.location.href = response.data.sessionURL;
+          }
+        })
+        .catch((err) => console.log(err.message));
+    };
+    
   const InputTextField = ({ label, ...props }) => {
     const [field, meta] = useField(props);
     return (
@@ -198,15 +236,11 @@ const PackageDetails = () => {
                         </span>
                     </div>
                 <div className="flex " style={{display:'flex',flexDirection:'row',justifyContent:'center',marginTop:'3%' , marginBottom:'4%'}}>
+                  
                   <p className="flex text-xl font-inter font-semibold mt-3 gap-x-2 mr-1">
                     <IoPricetagsOutline className="mt-1" />
-                    Price: {fromCurrency === "USD" ? "$" : fromCurrency === "PKR" ? `Rs` : 'AED ' } 
+                    Price: {displayedPrice}
                   </p>
-                  <span className="font-inter font-bold text-xl mt-3">
-                    {fromCurrency === "USD"
-                      ? packageObject.price
-                      : Math.round ((exchangeRate / CurrentCurrency) * packageObject.price,9)}
-                  </span>
                   <Button
                     className="ml-5 shadow-sm bg-black text-white hover:bg-white hover:text-black transition-colors duration-100 text-xs md:text-sm font-medium text-center rounded-lg "
                     onClick={() => handleCurrencyToggle(fromCurrency)}

@@ -69,13 +69,21 @@ export default function Tours({ searchTerm }) {
 			{data.map((destination, _id) => (
 			  <div
 				key={_id}
-				className="transform hover:scale-95 overflow-hidden shadow-lg rounded-lg bg-white lg:w-96 h-auto border-2 my-3 lg:my-5"
+				className="transform hover:scale-95 overflow-hidden shadow-lg rounded-lg bg-white lg:w-96 h-auto border-2 my-3 lg:my-5 relative"
 			  >
 				<img
 				  src={destination.images[0].image}
 				  alt={destination.title}
 				  className="w-full h-60 object-cover rounded-t-lg"
 				/>
+				 {
+								destination?.isDiscounted && (
+									<div className="absolute top-0 right-0 bg-red-500 text-white py-1 px-3 rounded-tl-lg">
+									
+										{destination.Discount}% OFF
+									</div>
+								)
+								}
 				<div className="p-4"
 					
 				>
@@ -90,7 +98,20 @@ export default function Tours({ searchTerm }) {
                         </span>
                         <span className="text-md">{destination.duration} days</span>
                     </div>
-                    <p className="font-bold text-md">{"$" + destination.price}</p>
+					<div className="flex items-center">
+                  {destination.isDiscounted && (
+                    <p className="text-gray-500 line-through mr-2">
+                      {"$" + destination.price}
+                    </p>
+                  )}
+                  <p className="font-bold text-2xl mt-1 mr-auto">
+                    {"$" +
+                      (destination.isDiscounted
+                        ? destination.price -
+                          (destination.price * destination.Discount) / 100
+                        : destination.price)}
+                  </p>
+                </div>
                 </div>
                 <div className="my-3">
                     <span className="font-bold text-md">Dealer:{" "} </span>
