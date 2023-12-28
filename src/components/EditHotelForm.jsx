@@ -45,11 +45,18 @@ export default function EditForm({
   setPrice,
   packageData,
   setRegion,
-  region
+  region,
+  isDiscounted,
+  discount,
+  setisDiscounted,
+  setDiscount
 }) {
 
   const handleRegionChange = (event) => {
     setRegion(event.target.value);
+  };
+  const handleCheckboxChange = () => {
+    setisDiscounted(!isDiscounted); 
   };
   const handleUploadImage = () => {
     let widget = window.cloudinary.createUploadWidget(
@@ -209,6 +216,31 @@ export default function EditForm({
             value={price}
             onChange={(e) => {
               setPrice(e.target.value);
+            }}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <label>
+            <input
+              type="checkbox"
+              checked={isDiscounted}
+              onChange={handleCheckboxChange}
+              style={{marginRight:'3%'}}
+            />
+          Is Discounted
+          </label>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            multiline
+            id="discount "
+            name="discount "
+            label="Discount Percentage"
+            fullWidth
+            variant="standard"
+            value={discount}
+            onChange={(e) => {
+             setDiscount(e.target.value);
             }}
           />
         </Grid>

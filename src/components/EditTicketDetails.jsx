@@ -38,6 +38,8 @@ export default function Checkout() {
   const [country, setCountry] = useState(packageData.country);
   const [totalCount, setTotalCount] = useState(packageData.totalCount);
   const [price, setPrice] = useState(packageData.price);
+  const [isDiscounted,setisDiscounted] = useState(packageData.isDiscounted);
+  const [discount,setDiscount]= useState(packageData.Discount);
   const [error, seterror] = React.useState("");
   const [imagesList, setImagesList] = useState([]);
   const [videosList, setVideosList] = useState([]);
@@ -88,6 +90,8 @@ export default function Checkout() {
       totalCount: totalCount,
       region: region,
       price: price,
+      isDiscounted:isDiscounted,
+      Discount: discount,
       active: true,
     };
     const URL = `http://localhost:8080/api/tickets/update/${packageData._id}`;
@@ -137,6 +141,10 @@ export default function Checkout() {
             packageData={packageData}
             setRegion={setRegion}
             region = {region}
+            isDiscounted ={isDiscounted}
+            discount={discount}
+            setisDiscounted={setisDiscounted}
+            setDiscount={setDiscount}
           />
         );
       case 1:
@@ -156,6 +164,7 @@ export default function Checkout() {
             price={price}
             totalCount={totalCount}
             region = {region}
+            discount = {discount}
           />
         );
       default:

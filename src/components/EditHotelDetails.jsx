@@ -35,6 +35,8 @@ export default function Checkout() {
   const [region , setRegion] = useState(packageData.region)
   const [state, setState] = useState(null);
   const [zip, setZip] = useState(null);
+  const [isDiscounted,setisDiscounted] = useState(packageData.isDiscounted);
+  const [discount,setDiscount]= useState(packageData.Discount);
   const [country, setCountry] = useState(null);
   const [totalCount, setTotalCount] = useState(null);
   const [price, setPrice] = useState(packageData.price);
@@ -77,6 +79,8 @@ export default function Checkout() {
         images: imagesList,
         region: region,
         price: price,
+        isDiscounted:isDiscounted,
+        Discount: discount,
         active: true,
     };
     const URL = `http://localhost:8080/api/hotels/update/${packageData._id}`;
@@ -126,6 +130,10 @@ export default function Checkout() {
             packageData={packageData}
             setRegion={setRegion}
             region = {region}
+            isDiscounted ={isDiscounted}
+            discount={discount}
+            setisDiscounted={setisDiscounted}
+            setDiscount={setDiscount}
           />
         );
       case 1:
@@ -138,6 +146,7 @@ export default function Checkout() {
             imageFileUrl={imageFileUrl}
             price={price}
             region = {region}
+            discount = {discount}
           />
         );
       default:

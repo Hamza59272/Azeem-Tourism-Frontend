@@ -33,6 +33,8 @@ export default function Checkout() {
   const [region , setRegion] = useState(packageData.region)
   const [address, setAddress] = useState(packageData.address);
   const [city, setCity] = useState(packageData.city);
+  const [isDiscounted,setisDiscounted] = useState(packageData.isDiscounted);
+  const [discount,setDiscount]= useState(packageData.Discount);
   const [state, setState] = useState(packageData.state);
   const [zip, setZip] = useState(packageData.zip);
   const [country, setCountry] = useState(packageData.country);
@@ -88,6 +90,8 @@ export default function Checkout() {
       region: region,
       totalCount: totalCount,
       price: price,
+      isDiscounted:isDiscounted,
+      Discount: discount,
       active: true,
     };
     const URL = `http://localhost:8080/api/tours/update/${packageData._id}`;
@@ -137,6 +141,10 @@ export default function Checkout() {
             packageData={packageData}
             setRegion={setRegion}
             region = {region}
+            isDiscounted ={isDiscounted}
+            discount={discount}
+            setisDiscounted={setisDiscounted}
+            setDiscount={setDiscount}
           />
         );
       case 1:
@@ -156,6 +164,7 @@ export default function Checkout() {
             price={price}
             totalCount={totalCount}
             region = {region}
+            discount = {discount}
           />
         );
       default:
