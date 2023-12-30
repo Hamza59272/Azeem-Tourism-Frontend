@@ -28,7 +28,7 @@ export default function Checkout() {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zip, setZip] = useState(0);
-  const [region , setRegion] = useState("")
+  const [region , setRegion] = useState("Both")
   const [country, setCountry] = useState("");
   const [totalCount, setTotalCount] = useState(0);
   const [price, setPrice] = useState(0);

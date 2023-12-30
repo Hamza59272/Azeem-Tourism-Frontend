@@ -31,7 +31,7 @@ export default function Checkout() {
   const [country, setCountry] = useState("");
   const [totalCount, setTotalCount] = useState(0);
   const [price, setPrice] = useState(0);
-  const [region , setRegion] = useState("")
+  const [region , setRegion] = useState("Both")
   const [error, seterror] = React.useState("");
   const [imagesList, setImagesList] = useState([]);
   const [videosList, setVideosList] = useState([]);

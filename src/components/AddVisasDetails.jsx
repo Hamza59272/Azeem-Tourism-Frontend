@@ -29,7 +29,7 @@ export default function Checkout() {
   const [state, setState] = useState("");
   const [zip, setZip] = useState(0);
   const [country, setCountry] = useState("");
-  const [region , setRegion] = useState("")
+  const [region , setRegion] = useState("Both")
   const [totalCount, setTotalCount] = useState(0);
   const [price, setPrice] = useState(0);
   const [error, seterror] = React.useState("");

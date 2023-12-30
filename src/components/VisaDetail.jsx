@@ -197,7 +197,7 @@ const PackageDetails = () => {
           <div className="w-full lg:justify-left">
             <div className="flex flex-col lg:flex-row lg:gap-x-10 justify-center ">
               <div className="w-full justify-center ">
-                <h2 className="p-2 text-2xl  lg:text-2xl text-center font-bold font-inter text-zinc-800 text-left">
+                <h2 className="p-2 text-2xl  lg:text-2xl text-center font-bold font-inter text-zinc-800 text-left  mb-2">
                   {packageObject.title}
                 </h2>
                 <Carousel
@@ -253,7 +253,7 @@ const PackageDetails = () => {
                 </div>
               </div>
               <div className="w-full lg:w-2/5 ">
-                <h5 className="font-bold text-center font-inter text-xl lg:text-2xl">
+                <h5 className="font-bold text-center font-inter text-xl lg:text-2xl  mb-2">
                   Recent Tours
                 </h5>
                 <div className="overflow-y-auto h-screen px-2 shadow-lg">

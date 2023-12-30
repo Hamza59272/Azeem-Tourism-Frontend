@@ -191,7 +191,7 @@ const PackageDetails = () => {
       <div className="flex flex-col lg:flex-row justify-center px-5 lg:px-0">
         {packageObject && (
           <div className="w-full  lg:w-5/6 lg:justify-center  ">
-            <h2 className="py-5 text-2xl lg:py-10 lg:text-3xl font-bold font-inter text-zinc-800 text-center">
+            <h2 className="py-5 text-2xl lg:py-10 lg:text-3xl font-bold font-inter text-zinc-800 text-center  mb-2">
               {packageObject.title}
             </h2>
             <div className="flex flex-col lg:flex-row lg:gap-x-10 justify-center">
@@ -236,14 +236,14 @@ const PackageDetails = () => {
                
               </div>
               <div className="w-full lg:w-2/5 ">
-                <h5 className="font-bold text-center font-inter">
+                <h5 className="font-bold text-center font-inter  mb-2">
                   Recent Packages
                 </h5>
                 {packagesData.map((item, index) => (
                   <Card
                     key={item.id}
                     imgSrc={item.images[0].image}
-                    className="mb-5 shadow-sm"
+                    className="mb-5 shadow-sm border-2 border-lavender"
                   >
                     <div className="">
                       <p className="font-semibold text-center text-xl">
@@ -254,7 +254,7 @@ const PackageDetails = () => {
                           setPackageObject(packagesData[index]);
                           //navigate(`/tickets/${packagesData[index].title}`);
                         }}
-                        className="shadow-sm  bg-zinc-100  text-zinc-800 hover:bg-zinc-800 hover:text-white transition-colors duration-100  text-sm font-medium text-center rounded-lg bg-primary-700 w-full"
+                        className="mt-3 shadow-sm border-2 border-black bg-zinc-100 text-zinc-800 hover:bg-zinc-800 hover:text-white transition-colors duration-100 text-sm font-medium text-center rounded-lg bg-primary-700 w-full"
                       >
                         View
                       </Button>
@@ -329,8 +329,8 @@ const PackageDetails = () => {
               <div className=" flex justify-center mt-5">
                 <Button
                   type="submit"
-                  className="shadow-sm  lg:w-48 bg-zinc-100  text-zinc-800 hover:bg-zinc-800 hover:text-white transition-colors duration-100  text-sm font-medium text-center rounded-lg bg-primary-700 w-full"
-                >
+                  className="mt-3 shadow-sm border-2 border-black bg-zinc-100 text-zinc-800 hover:bg-zinc-800 hover:text-white transition-colors duration-100 text-sm font-medium text-center rounded-lg bg-primary-700 w-full"
+                  >
                   Proceed
                 </Button>
               </div>

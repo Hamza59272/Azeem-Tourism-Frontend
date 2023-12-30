@@ -21,7 +21,7 @@ export default function Checkout() {
   const [videoFileName, setVideoFileName] = useState([]);
   const [videoFileUrl, setVideoFileUrl] = useState([]);
   const [title, setTitle] = useState("");
-  const [region , setRegion] = useState("")
+  const [region , setRegion] = useState("Both")
   const [desc, setDesc] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");

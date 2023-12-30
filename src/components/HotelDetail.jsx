@@ -189,7 +189,7 @@ const HotelDetails = () => {
           <div className="w-full">
             <div className="flex flex-col lg:flex-row lg:gap-x-10 justify-center ">
               <div className="w-full justify-center ">
-                <h2 className="text-2xl  lg:text-2xl text-center font-bold font-inter text-zinc-800 text-left">
+                <h2 className="text-2xl  lg:text-2xl text-center font-bold font-inter text-zinc-800 text-left mb-2">
                   {packageObject.name}
                 </h2>
                 <Carousel
@@ -231,7 +231,7 @@ const HotelDetails = () => {
                 </div>
               </div>
               <div className="w-full lg:w-2/5 ">
-                <h5 className="font-bold text-center font-inter text-xl lg:text-2xl">
+                <h5 className="font-bold text-center font-inter text-xl lg:text-2xl  mb-2">
                   Recent Packages
                 </h5>
                 <div className="overflow-y-auto h-screen px-2">
@@ -239,7 +239,7 @@ const HotelDetails = () => {
                     <Card
                       key={item.id}
                       imgSrc={item.images[0].image}
-                      className="mb-5 shadow-sm"
+                      className="mb-5 shadow-sm border-2 border-rust"
                     >
                       <div className="">
                         <p className="font-semibold text-center text-xl">
@@ -250,8 +250,8 @@ const HotelDetails = () => {
                             setPackageObject(packagesData[index]);
                             // navigate(`/packages/${packagesData[index].title}`);
                           }}
-                          className="shadow-sm bg-zinc-100 text-zinc-800 hover:bg-zinc-800 hover:text-white transition-colors duration-100 text-sm font-medium text-center rounded-lg bg-primary-700 w-full"
-                        >
+                          className="mt-3 shadow-sm border-2 border-black bg-zinc-100 text-zinc-800 hover:bg-zinc-800 hover:text-white transition-colors duration-100 text-sm font-medium text-center rounded-lg bg-primary-700 w-full"
+                          >
                           View
                         </Button>
                       </div>
@@ -281,7 +281,7 @@ const HotelDetails = () => {
               resetForm();
             }}
           >
-            <Form className="border-2 bg-rust shadow-lg rounded px-4 md:px-8 pt-6 pb-8 mb-4">
+            <Form className="border-2 bg-rust shadow-lg rounded-lg px-4 md:px-8 pt-6 pb-8 mb-4">
               <InputTextField
                 label="Full Name"
                 name="full_name"
@@ -327,8 +327,8 @@ const HotelDetails = () => {
               <div className=" flex justify-center mt-5">
                 <Button
                   type="submit"
-                  className="shadow-sm  lg:w-48 bg-zinc-100  text-zinc-800 hover:bg-zinc-800 hover:text-white transition-colors duration-100  text-sm font-medium text-center rounded-lg bg-primary-700 w-full"
-                >
+                  className="shadow-sm lg:w-48 border-2 border-black text-zinc-800 hover:bg-zinc-800 hover:text-white transition-colors duration-100 text-md font-medium text-center rounded-lg bg-primary-700 w-full"
+                  >
                   Proceed
                 </Button>
               </div>

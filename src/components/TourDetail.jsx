@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { Card } from "flowbite-react";
 import * as Yup from "yup";
 import axios from "axios";
+import { Typography } from "@material-ui/core";
 
 const PackageDetails = () => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ const PackageDetails = () => {
   const [exchangeRate, setExchangeRate] = useState()
   const [currentCurrency, setCurrentCurrency ] = useState()
   const [displayedPrice, setDisplayedPrice] = useState();
+  const [selectedMilestone, setSelectedMilestone] = useState(null);
  
   useEffect(() => {
     const URL = "http://localhost:8080/api/tours/get";
@@ -60,6 +62,7 @@ const PackageDetails = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   useEffect(() => {
     if (packageObject) {
       const calculatedPrice =
@@ -82,10 +85,20 @@ const PackageDetails = () => {
       setDisplayedPrice(formattedPrice);
     }
   }, [packageObject, fromCurrency, exchangeRate, currentCurrency]);
+
+  useEffect(() => {
+    if (packageObject && packageObject.milestone && packageObject.milestone.length > 0) {
+      setSelectedMilestone(packageObject.milestone[0]);
+    }
+  }, [packageObject]);
+
   const handleCurrencyToggle = () => {
     setFromCurrency(toCurrency)
     setToCurrency(fromCurrency)
    
+  };
+  const handleMilestoneClick = (milestone) => {
+    setSelectedMilestone(milestone);
   };
   
 
@@ -190,7 +203,7 @@ const PackageDetails = () => {
           <div className="w-full lg:justify-left">
             <div className="flex flex-col lg:flex-row lg:gap-x-10 justify-center ">
               <div className="w-full justify-center ">
-                <h2 className="p-2 text-2xl  lg:text-2xl text-center font-bold font-inter text-zinc-800 text-left">
+                <h2 className="p-2 text-2xl  lg:text-2xl text-center font-bold font-inter text-zinc-800 text-left  mb-2">
                   {packageObject.title}
                 </h2>
                 <Carousel
@@ -231,9 +244,45 @@ const PackageDetails = () => {
 
 
                 </div>
+                {packageObject && (
+                  <>
+                    <div>
+                      {packageObject.milestone && (
+                        <>
+                          { packageObject.milestone.length > 0 && <h2 style={{fontWeight:'bold'}}>Milestones in this tour are:</h2>}
+                          {selectedMilestone && (
+                            <div style={{display:'flex' , flexDirection:"column" , justifyContent:'center',alignItems:'center'}}>
+                              <h3 style={{textAlign:'center' , marginBottom:4}}>Milestone: {selectedMilestone.title}</h3>
+                              <img
+                                src={selectedMilestone.image}
+                                alt={selectedMilestone.title}
+                                style={{ width: "30%", height: "auto" }}
+                              />
+                            </div>
+                          )}
+                          <div className="thumbnails" style={{display:'flex' , flexDirection:"row" , justifyContent:'center'}}>
+                            {packageObject.milestone.map((ms, index) => (
+                              <div style={{display:'flex' , flexDirection:"column" , justifyContent:'center'}}>
+                                <img
+                                  key={index}
+                                  src={ms.image}
+                                  alt={ms.title}
+                                  onClick={() => handleMilestoneClick(ms)}
+                                  style={{ width: "50px", height: "50px", cursor: "pointer" , marginRight:3 }}
+                                />
+                                <Typography
+                                >{index+1} </Typography>
+                              </div>
+                            ))}
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </>
+        )}
               </div>
               <div className="w-full lg:w-2/5 ">
-                <h5 className="font-bold text-center font-inter text-xl lg:text-2xl">
+                <h5 className="font-bold text-center font-inter text-xl lg:text-2xl mb-2">
                   Recent Tours
                 </h5>
                 <div className="overflow-y-auto h-screen px-2 shadow-lg">
